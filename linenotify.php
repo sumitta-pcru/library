@@ -12,6 +12,6 @@ $sql = "select *
             inner join member m on m.m_id = bw.m_id where bd.bd_status='1' ";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
-dfgdfgdgfdf
+
 
 ?>

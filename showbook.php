@@ -83,13 +83,14 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                             				<td  align="center">ชื่อหนังสือ</td>
                             				<td  align="center">ชื่อผู้แต่ง</td>
                             				<td  align="center">ปีที่พิมพ์</td>
-                            				<td width="10" align="center">สถานที่พิมพ์</td>
+                            				<td width="10%" align="center">สถานที่พิมพ์</td>
                             				<td  align="center">ราคา</td>
                             				<td  align="center">จำนวนเล่ม</td>
                             				
                             				<td  align="center">รูปภาพ</td>
                             				<td  align="center">ชื่อหมวดหมู่</td>
-							 				<td  align="center"></td>
+							 				<td align="center" width="15%"></td>
+                                             
                                         </tr>
                                     </thead>
 <!-- 
@@ -128,16 +129,18 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
 
                                         <td align="center">
                                             <a class="btn btn-secondary"  href="showbooklist.php?b_id=<?php echo $rs1->b_id;?>">
-                                                <i class="fas fa-angle-double-right"></i> รายการหนังสือ
+                                                <i class="fas fa-angle-double-right"></i>
                                             </a>
                                             <a class="btn btn-success"  href="frm_addbooklist.php?b_id=<?php echo $rs1->b_id;?>">
-                                                <i class="fas fa-plus-square"></i> เพิ่มรายการ
+                                                <i class="fas fa-plus-square"></i>
                                             </a>
+                                        <!-- </td>
+                                            <td align="center"> -->
                                             <a class="btn btn-warning"  href="frm_editbook.php?b_id=<?php echo $rs1->b_id;?>">
-                                                <i class="fas fa-pen"></i> แก้ไข
+                                                <i class="fas fa-pen"></i>
                                             </a>
                                             <a class="btn btn-danger"href="frm_debook.php?b_id=<?php echo $rs1->b_id;?>">
-                                                <i class="fas fa-trash-alt"></i> ลบ
+                                                <i class="fas fa-trash-alt"></i> 
                                             </a>
                                         </td>
                                     </tr>
