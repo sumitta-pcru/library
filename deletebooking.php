@@ -13,7 +13,7 @@ include "script.php";
 include "alert.php";
 $dk_id=$_POST['dk_id'];
 $bl_id=$_POST['bl_id'];
-$dk_status = "1";
+$dk_status = "2";
 // echo $bl_id;
 // $bl_status ='0';
 // $sql = "select *

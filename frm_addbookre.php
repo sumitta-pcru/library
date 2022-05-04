@@ -115,7 +115,7 @@ $valid_uname = $_SESSION['valid_uname'];
                             <div class="table-responsive" style="margin-top: -20px;">
                                 <div class="container">
                                 <form  action="addreturn.php" method="post" enctype="multipart/form-data">
-                                <div class="form-group row" align="center">
+                                <!-- <div class="form-group row" align="center">
                                             <span style="padding-left:100px"></span>
                                             <label for="colFormLabel"class="col-sm-2 ml-md-5 col-form-label">ชื่อผู้ใช้</label>
                                             <div class="col-sm-6" >
@@ -131,16 +131,8 @@ $valid_uname = $_SESSION['valid_uname'];
                                                     ?>
                                                 </select>
                                             </div>
-                                        </div>
-                                        <div align="center">
-                                            <td align="center">
-                                                <button class="btn btn-primary" type="submit" >บันทึก</button>
-                                                <button type="button" name="Submit2"
-                                                    onclick="window.location='delbookre.php';" class="btn btn-danger">
-                                                    <span class="glyphicon glyphicon-shopping-cart"> </span> ยกเลิก
-                                                </button>
-                                            </td>
-                                        </div>
+                                        </div> -->
+                                       
                                        
                                     
                                     <table width="250%" cellspacing="0" border="0" align="center"
@@ -171,17 +163,6 @@ $valid_uname = $_SESSION['valid_uname'];
                                                     inner join booklist bl on bl.b_id = b.b_id where bl_id='". $_SESSION['return'][$bl_id] ."'";
                                                     $result2 = mysql_query($sql2, $conn);
                                                     $row2 = mysql_fetch_array($result2);
-                                                    // $bd_id = $row2['bd_id'.$i];
-                                                    // $bl_id[$i] = $row2['bl_id'];
-                                                    // echo $bl_id;
-                                                    // echo  $_SESSION['return'][$bl_id];
-                                                    // echo "<br>";
-                                                    // echo "$row2[bw_id]";
-                                                    // echo "<br>";
-                                                    // echo "$row2[bd_id]";
-                                                    // echo "<br>";
-                                                    // echo "$row2[bw_date]";
-                                                    // echo "<tr>";
                                                     echo "<td>";
                                                     echo $i += 1;
                                                     echo ".";
@@ -191,11 +172,30 @@ $valid_uname = $_SESSION['valid_uname'];
                                                    
                                                     echo "<td align='center'><a  href='deletebookre.php?bl_id=$bl_id&act=remove'><i class='fas fa-trash-alt' style='color:#EC7063'></i></a></td>";
                                                     echo "</tr>";
-                                            }  
+                                                }  
                                            
                                              } ?>
+                                            <tr>
+                                                <td colspan="5" align="right">
+                                                    <button class="btn btn-primary" type="submit" >บันทึก</button>
+                                                    <button type="button" name="Submit2"
+                                                        onclick="window.location='delbookre.php';" class="btn btn-danger">
+                                                        <span class="glyphicon glyphicon-shopping-cart"> </span> ยกเลิก
+                                                    </button>
+                                                </td>
+                                            </tr> 
                                         </tbody>
                                     </table>
+                                    <br>
+                                    <!-- <div align="center">
+                                            <td align="center">
+                                                <button class="btn btn-primary" type="submit" >บันทึก</button>
+                                                <button type="button" name="Submit2"
+                                                    onclick="window.location='delbookre.php';" class="btn btn-danger">
+                                                    <span class="glyphicon glyphicon-shopping-cart"> </span> ยกเลิก
+                                                </button>
+                                            </td>
+                                        </div> -->
                                     <!-- <input name="act" type="hidden" id="act" value="act"> -->
                                 </form>
 

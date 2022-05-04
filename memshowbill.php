@@ -8,8 +8,10 @@ $sql = "select *
             FROM bookreturndetails bi  inner join bookreturn br  on bi.br_id = br.br_id 
                 inner join member m on m.m_id = br.mr_id  
                 inner join borrowingdetails bd on bi.bd_id = bd.bd_id
+                inner join borrowing bw on bw.bw_id = bd.bw_id 
+                inner join bill bil on br.br_id = bil.br_id 
                 inner join booklist bl on bd.bl_id = bl.bl_id
-                inner join book b on b.b_id = bl.b_id   where br.m_id = '$valid_uname' group by br.br_id ";
+                inner join book b on b.b_id = bl.b_id   where bw.m_id = '$valid_uname' group by br.br_id ";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 ?>
@@ -81,7 +83,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                 <td align="center"><?php echo"$rs1->bl_id";?></td>
                                 <td align="center"><?php echo"$rs1->b_name";?></td>
                                 <td align="center"><?php echo"$rs1->br_date";?></td>
-                                <td align="center"><?php echo"$rs1->br_totalrate";?></td>
+                                <td align="center"><?php echo"$rs1->rate";?></td>
                                 <td align="center"><?php echo"$rs1->m_name";?></td>
                                 <td align="center">
                                             <a class="btn btn-secondary"  href="memprintbill.php?br_id=<?php echo $rs1->br_id;?>">

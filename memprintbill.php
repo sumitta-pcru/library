@@ -5,20 +5,33 @@ include "connect.php";
 // include 'scriptmem.php';
 // include 'script.php';
 
-
+$br_id = $_GET["br_id"];
 $valid_uname = $_SESSION['valid_uname'];
 $sql1 = "SELECT * FROM member WHERE m_id = '$valid_uname'";
 $result1 = mysql_query($sql1, $conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
 $rs1 = mysql_fetch_object($result1);
 
-$br_id = $_GET["br_id"];
+$sql11 = "select *
+            FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
+            inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
+            inner join borrowing bw on bw.bw_id = bd.bw_id 
+            inner join bill bi on rd.br_id = bi.br_id 
+            inner join booklist bl on bl.bl_id = bd.bl_id                
+            inner join book b on b.b_id = bl.b_id  
+            inner join member m on m.m_id = bw.mw_id 
+			inner join usertype ut on ut.ut_id=m.ut_id where br.br_id =  $br_id ";
+$result11 = mysql_query($sql11, $conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
+$rs11 = mysql_fetch_object($result11);
+
+
 $sql 	= "select *
             FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
             inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
             inner join borrowing bw on bw.bw_id = bd.bw_id 
+            inner join bill bi on rd.br_id = bi.br_id 
             inner join booklist bl on bl.bl_id = bd.bl_id                
             inner join book b on b.b_id = bl.b_id  
-            inner join member m on m.m_id = br.m_id 
+            inner join member m on m.m_id = bw.m_id 
 			inner join usertype ut on ut.ut_id=m.ut_id where br.br_id =  $br_id ";
 $result = mysql_query($sql,$conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
 
@@ -26,12 +39,13 @@ $sql3 	= "select *
             FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
             inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
             inner join borrowing bw on bw.bw_id = bd.bw_id 
+            inner join bill bi on rd.br_id = bi.br_id 
             inner join booklist bl on bl.bl_id = bd.bl_id                
             inner join book b on b.b_id = bl.b_id  
-            inner join member m on m.m_id = br.m_id 
+            inner join member m on m.m_id = bw.m_id 
 			inner join usertype ut on ut.ut_id=m.ut_id where br.br_id =  $br_id ";
 $result3 = mysql_query($sql3,$conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
-$rs1 = mysql_fetch_object($result3);
+$rs2 = mysql_fetch_object($result3);
 
 // $sql4 	= "select rd.rate
 //             FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
@@ -198,24 +212,24 @@ mysql_close();
 		<tr><td></td></tr>
 
         <tr>
-            <td>ประเภทสมาชิก : <?php echo"$rs1->ut_name";?></td>
-            <td align="right">เลขที่ใบเสร็จรับเงิน <?php echo"$rs1->rb_id";?></td>
+            <td>ประเภทสมาชิก : <?php echo"$rs2->ut_name";?></td>
+            <td align="right">เลขที่ใบเสร็จรับเงิน <?php echo"$rs2->bi_id";?></td>
         </tr>
 
         <tr>
-            <td>รหัสสมาชิก : <?php echo"$rs1->m_id";?></td>
+            <td>รหัสสมาชิก : <?php echo"$rs2->m_id";?></td>
             <td width="33%" align="right">วันที่ : <?php echo DateThai($date);?> </td>
         </tr>
         <tr>
-            <td>ชื่อ : <?php echo"$rs1->m_name";?></td>
+            <td>ชื่อ : <?php echo"$rs2->m_name";?></td>
             <td width="33%" align="right">&nbsp;</td>
         </tr>
         <tr>
-            <td>ที่อยู่ : <?php echo"$rs1->m_add";?></td>
+            <td>ที่อยู่ : <?php echo"$rs2->m_add";?></td>
 
         </tr>
         <!-- <tr>
-            <td height="29">เลขที่ใบอ้างอิง <?php echo"$rs1->bw_id";?></td>
+            <td height="29">เลขที่ใบอ้างอิง <?php echo"$rs2->bw_id";?></td>
 
         </tr> -->
         
@@ -267,10 +281,22 @@ mysql_close();
             <td  align="center">................................</td>
         </tr>
         <tr >
+            <td   align="center">( <?php echo"$rs11->m_name"; ?> ) </td>
+        </tr>
+        <tr >
+            <td  align="center">ผู้รับเงิน</td>
+        </tr>
+
+    </table>
+	<table width="30%" align="right" style="margin-top: 100px" >
+        <tr >
+            <td  align="center">................................</td>
+        </tr>
+        <tr >
             <td   align="center">( <?php echo"$rs1->m_name"; ?> ) </td>
         </tr>
         <tr >
-            <td  align="center">ผู้จ่ายเงิน   </td>
+            <td  align="center">ผู้จ่ายเงิน</td>
         </tr>
 
     </table>

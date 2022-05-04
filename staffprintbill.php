@@ -4,7 +4,15 @@ if (isset($_SESSION["valid_uname"]) && isset($_SESSION["valid_pwd"])) {
 include "connect.php";
 // include 'scriptmem.php';
 // include 'script.php';
-
+function DateThai($date)
+	{
+		$strYear = date("Y",strtotime($date))+543;
+		$strMonth= date("n",strtotime($date));
+		$strDay= date("j",strtotime($date));
+		$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+		$strMonthThai=$strMonthCut[$strMonth];
+		return "$strDay $strMonthThai $strYear";
+	}
 
 $valid_uname = $_SESSION['valid_uname'];
 $sql1 = "SELECT * FROM member WHERE m_id = '$valid_uname'";
@@ -18,13 +26,16 @@ $sql 	= "select *
             inner join borrowing bw on bw.bw_id = bd.bw_id 
             inner join booklist bl on bl.bl_id = bd.bl_id                
             inner join book b on b.b_id = bl.b_id  
-            inner join member m on m.m_id = br.m_id 
-			inner join usertype ut on ut.ut_id=m.ut_id where rd.rb_id =  $rb_id ";
+            inner join bill bi on rd.br_id = bi.br_id 
+            inner join member m on m.m_id = bw.m_id 
+			inner join usertype ut on ut.ut_id=m.ut_id
+			where rd.rb_id =  $rb_id ";
 $result = mysql_query($sql,$conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
 $rs = mysql_fetch_object($result);
 
 $sql2 = "select *
             FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
+            inner join bill bi on rd.br_id = bi.br_id 
             inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
             inner join borrowing bw on bw.bw_id = bd.bw_id  where rd.rb_id =  $rb_id ";
 $query = mysql_query($sql2,$conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
@@ -38,18 +49,6 @@ $diff = $datediff->format('%a');
 	
 $date = date($row->br_date);	
 
-	
-function DateThai($date)
-	{
-		$strYear = date("Y",strtotime($date))+543;
-		$strMonth= date("n",strtotime($date));
-		$strDay= date("j",strtotime($date));
-		$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
-		$strMonthThai=$strMonthCut[$strMonth];
-		return "$strDay $strMonthThai $strYear";
-	}
-	
-	
 	
 	
 //$bw_returndate = date($row->bw_returndate);
@@ -174,7 +173,7 @@ mysql_close();
 
         <tr>
             <td>ประเภทสมาชิก : <?php echo"$rs->ut_name";?></td>
-            <td align="right">เลขที่ใบเสร็จรับเงิน <?php echo"$rs->rb_id";?></td>
+            <td align="right">เลขที่ใบเสร็จรับเงิน<?php echo"$rs->bi_id";?></td>
         </tr>
 
         <tr>
@@ -222,6 +221,7 @@ mysql_close();
             <td align="center"><?php echo"$rs->rate"; ?> บาท</td>
         </tr>
     </table>
+
     <table width="30%" align="right" style="margin-top: 100px" >
         <tr >
             <td  align="center">................................</td>
@@ -231,6 +231,18 @@ mysql_close();
         </tr>
         <tr >
             <td  align="center">ผู้รับเงิน   </td>
+        </tr>
+
+    </table>
+	<table width="30%" align="right" style="margin-top: 100px" >
+        <tr >
+            <td  align="center">................................</td>
+        </tr>
+        <tr >
+            <td   align="center">( <?php echo"$rs->m_name"; ?> ) </td>
+        </tr>
+        <tr >
+            <td  align="center">ผู้จ่ายเงิน</td>
         </tr>
 
     </table>

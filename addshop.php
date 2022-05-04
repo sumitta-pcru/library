@@ -22,7 +22,13 @@
 	$result1 = mysql_query($sqllending,$conn);
 	$record1=mysql_fetch_array($result1);
 	$lending=$record1[0];
- echo $lending;
+ 	echo $lending;
+
+	// $sqlholding="SELECT COUNT(bk.m_id) FROM bookings bk inner join bookingsdetails bt  on bk.bk_id = bt.bk_id  WHERE bk.m_id='$valid_uname' AND bt.dk_status='0' ";
+    // $result2 = mysql_query($sqlholding,$conn);
+    // $record2=mysql_fetch_array($result2);
+    // $holding=$record2[0];
+
 if($lending>=1){
 
            echo"<script language=\"javascript\">";

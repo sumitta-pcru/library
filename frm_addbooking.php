@@ -75,7 +75,7 @@ mysql_close();
                             <form id="form2" name="form2"  method="post" action="searchrecate.php">
                                 <div class="form-group row">
                                     <div class="input-group">
-                                        <select class="custom-select" name="bc_id" id="bc_id" >
+                                        <select class="custom-select mr-2" name="bc_id" id="bc_id" >
                                             <?php
                                                 $sql2 = "SELECT * from bookcategory ";
                                                 $result2 = mysql_query($sql2,$conn);

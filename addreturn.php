@@ -17,12 +17,13 @@ include 'check.php';
 
 
 $valid_uname = $_SESSION['valid_uname'];
-$m_id =$_POST['m_id'];
+// $m_id =$_POST['m_id'];
 $br_date = date('Y-m-d');
 $br_totalrate = '0';
 $rate = '3';
 $bd_status = '0';
 $bl_status = '0';
+$year = date("Y");
 
 if(empty($_SESSION['return'])){
     // echo"<script language=\"javascript\">";
@@ -37,7 +38,7 @@ if(empty($_SESSION['return'])){
 
     }
     
-            $sql1 = "INSERT INTO bookreturn (br_date,br_totalrate,m_id,mr_id) VALUES('$br_date','$rate','$m_id','$valid_uname')";
+            $sql1 = "INSERT INTO bookreturn (br_date,br_totalrate,mr_id) VALUES('$br_date','$rate','$valid_uname')";
             $query2 = mysql_query($sql1, $conn) or die ("Error in query: $sql1 " . mysql_error());
             $br_id = mysql_insert_id();
 
@@ -90,6 +91,9 @@ if(empty($_SESSION['return'])){
                     // $br_id = mysql_insert_id();
                     $sql3 = "INSERT INTO bookreturndetails (br_id,rate,bd_id) VALUES('$br_id','$sum','$result->bd_id')";
                     $query3 = mysql_query($sql3, $conn) or die ("Error in query: $sql3 " . mysql_error());
+
+                    $sql6 = "INSERT INTO bill (bi_year,br_id) VALUES('$year','$br_id')";
+                    $query4 = mysql_query($sql6, $conn) or die ("Error in query: $sql6 " . mysql_error());
 
                     $sql4 = "Update borrowingdetails set bd_status ='$bd_status'   where bd_id = '$result->bd_id'";
                     $result1 = mysql_query($sql4, $conn) or die ("Error in query: $sql4 " . mysql_error());

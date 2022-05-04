@@ -18,8 +18,9 @@ $sql = "select *
             inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
             inner join borrowing bw on bw.bw_id = bd.bw_id 
             inner join booklist bl on bl.bl_id = bd.bl_id                
-            inner join book b on b.b_id = bl.b_id  
-            inner join member m on m.m_id = br.m_id where br.br_date = '$date' or br.br_date = '$d_s' ";
+            inner join book b on b.b_id = bl.b_id 
+            inner join bill bi on rd.br_id = bi.br_id 
+            where br.br_date = '$date' or br.br_date = '$d_s'";
 
 $result = mysql_query($sql, $conn)
 or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
@@ -115,10 +116,11 @@ or die("3. ไม่สามารถประมวลผลคำสั่ง
                                 <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <td width="85" align="center">ชื่อผู้ใช้</td>
-                                            <td width="60" align="center">ชื่อหนังสือ</td>
-                                            <td width="100" align="center">ค่าปรับ</td>
-                                            <td width="70" align="center">วันที่เสียค่าปรับ</td>
+                                            <td width="15%" align="center">รหัสการคืน</td>
+                                            <td width="35%" align="center">ชื่อหนังสือ</td>
+                                            <td width="15%" align="center">ค่าปรับ</td>
+                                            <td width="20%" align="center">วันที่เสียค่าปรับ</td>
+                                            <td width="20%">&nbsp;</td>
 
                                         </tr>
                                     </thead>
@@ -129,27 +131,31 @@ or die("3. ไม่สามารถประมวลผลคำสั่ง
 
                    
 
-                                    $sql1 = "SELECT * FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
-                                                            inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
-                                                            inner join borrowing bw on bw.bw_id = bd.bw_id 
-                                                            inner join booklist bl on bl.bl_id = bd.bl_id                
-                                                            inner join book b on b.b_id = bl.b_id  
-                                                            inner join member m on m.m_id = br.m_id   "
-                                    or die("Error:" . mysql_error());
-// = '$d_s' ORDER BY br.br_id ASC
+                                    $sql1 = "SELECT *  FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
+                                    inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
+                                    inner join borrowing bw on bw.bw_id = bd.bw_id 
+                                    inner join booklist bl on bl.bl_id = bd.bl_id                
+                                    inner join book b on b.b_id = bl.b_id  
+                                    where  br.br_date = '$d_s' ";
+                                    
                                     $result1 = mysql_query($sql1, $conn);//ดูชื่อ ตัวแปรในไฟล์ connect ให้ดีว่า conหรือ condb หรืออย่างอื่น
 
-
+                                    // while ($rs1 = mysql_fetch_object($result1)) {
                                     while ($rs = mysql_fetch_object($result)) {
+                                        
                                     ?>
                                     <tr>
-                                        <td align="center"><?php echo"$rs->m_name";?></td>
+                                        <td align="center"><?php echo"$rs->br_id";?></td>
                                         <td align="center"><?php echo"$rs->b_name";?></td>
                                         <td align="center"><?php echo"$rs->rate	";?></td>
                                         <td align="center"><?php echo"$rs->br_date";?></td>
-
+                                        <td align="center">                   
+                                            <a class="btn btn-secondary"  href="staffprintbill.php?rb_id=<?php echo $rs->rb_id;?>">
+                                                <i class="fas fa-print"></i> พิมพ์ใบเสร็จ
+                                            </a>
+                                        </td>
                                     </tr>
-                                        <?php } ?>
+                                        <?php }  ?>
                                     </tbody>
                                 </table>
 

@@ -9,8 +9,7 @@ $sql = "select *
             inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
             inner join borrowing bw on bw.bw_id = bd.bw_id 
             inner join booklist bl on bl.bl_id = bd.bl_id                
-            inner join book b on b.b_id = bl.b_id  
-            inner join member m on m.m_id = br.m_id ";
+            inner join book b on b.b_id = bl.b_id ";
 // group by br.br_id 
 $result = mysql_query($sql, $conn)
 or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
@@ -98,13 +97,13 @@ $sql1 = "select *
                                 <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <td width="85" align="center"> รหัสการคืน</td>
-                                            <td width="100" align="center">วันที่ยืม</td>
+                                            <td width="10%" align="center"> รหัสการคืน</td>
+                                            <td width="20%" align="center">วันที่ยืม</td>
                                             <!-- <td width="70" align="center">กำหนดคืน</td> -->
-                                            <td width="70" align="center">วันที่คืน</td>
-                                            <td width="100" align="center">ค่าปรับ</td>
-                                            <td width="60" align="center">ชื่อหนังสือ</td>
-                                            <td width="70">&nbsp;</td>
+                                            <td width="20%" align="center">วันที่คืน</td>
+                                            <td width="15%" align="center">ค่าปรับ</td>
+                                            <td width="40%" align="center">ชื่อหนังสือ</td>
+                                            <!-- <td width="70">&nbsp;</td> -->
                                         </tr>
                                     </thead>
 
@@ -122,12 +121,11 @@ $sql1 = "select *
                                         <td align="center"><?php echo"$rs->rate	";?></td>
                                         <td align="center"><?php echo"$rs->b_name";?></td>
 
-                                        <td align="center">
-                                            <a class="btn btn-secondary"  href="staffprintbill.php?rb_id=<?php echo $rs->rb_id;?>">
-                                                <i class="fas fa-print"></i> พิมพ์ใบเสร็จ
-                                            </a>
-                                            
-                                        </td>
+                                        <!-- <td align="center">   
+                                                <a class="btn btn-secondary"  href="staffprintbill.php?rb_id=<?php echo $rs->rb_id;?>">
+                                                    <i class="fas fa-print"></i> พิมพ์ใบเสร็จ
+                                                </a>  
+                                        </td> -->
                                     </tr>
 
                                         <?php

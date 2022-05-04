@@ -19,15 +19,24 @@ include "alert.php";
         }else{
             $act = ""; 
         }
+
+        $date = date("Y");
+        
         $sqllending="SELECT COUNT(bt.bl_id) FROM bookingsdetails bt  WHERE bt.bl_id='$bl_id'  AND bt.dk_status='0' ";
         $result1 = mysql_query($sqllending,$conn);
         $record1=mysql_fetch_array($result1);
         $lending=$record1[0];
 
-        // $sqlholding="SELECT COUNT(bk.m_id) FROM bookings bk inner join bookingsdetails bt  on bk.bk_id = bt.bk_id  WHERE bk.m_id='$valid_uname' AND bt.dk_status='0' ";
-        // $result2 = mysql_query($sqlholding,$conn);
-        // $record2=mysql_fetch_array($result2);
-        // $holding=$record2[0];
+        $sqlholding="SELECT COUNT(bk.m_id) FROM bookings bk inner join bookingsdetails bt  on bk.bk_id = bt.bk_id  WHERE bk.m_id='$valid_uname' AND bt.dk_status='0' ";
+        $result2 = mysql_query($sqlholding,$conn);
+        $record2=mysql_fetch_array($result2);
+        $holding=$record2[0];
+
+        $sqlholding3="SELECT COUNT(bk.m_id) FROM bookings bk inner join bookingsdetails bt  on bk.bk_id = bt.bk_id  WHERE bk.m_id='$valid_uname' AND bt.dk_status='2' AND DATE_FORMAT(bk.bk_date,'%Y') = '$date' ";
+        $result3 = mysql_query($sqlholding3,$conn);
+        $record3=mysql_fetch_array($result3);
+        $holding3=$record3[0];
+        
         
 if($lending>=1){
     //   
@@ -37,7 +46,14 @@ if($lending>=1){
             echo"</script>";
             
 }
-
+elseif($holding3>=10){
+    //   
+            echo"<script language=\"javascript\">";
+            echo"alert('คุณไม่สามารถจองหนังสือได้');";
+            echo"window.location = 'frm_addbooking.php';";
+            echo"</script>";
+            
+}
 else{
 
 
@@ -56,7 +72,7 @@ else{
 				$i++;
 			}
 			// echo $i;
-			if ($i < 2) {
+			if ($i < 2 ) {
 				$_SESSION['cart'][$bl_id] = $bl_id;
 				
 			}else {
