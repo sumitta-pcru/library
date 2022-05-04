@@ -9,10 +9,16 @@ $sql = "SELECT * FROM member WHERE m_id = '$valid_uname'";
 $result = mysql_query($sql, $conn)
 or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
 $rs = mysql_fetch_array($result);
-
-
-
 mysql_close();   
+
+function datethai($strDate){
+	$strYear = date("Y",strtotime($strDate))+543;
+	$strMonth= date("n",strtotime($strDate));
+	$strDay= date("j",strtotime($strDate));
+	$strMonthCut = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
+	$strMonthThai=$strMonthCut[$strMonth];
+	return "$strDay $strMonthThai $strYear";
+}
 
 ?>
 
@@ -44,55 +50,69 @@ mysql_close();
     <?php include "./h/member_menu.php"; ?>
     <div class="container-fluid">
         <div class="container-fluid">
-            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3" style="margin-top: 15px">
-                <div class="breadcrumb-title pe-3" style="font-size: 23px; "> รายการหนังสือ</div>
-
-                <div class="ps-3">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item active" aria-current="page">
-                                จัดการเพิ่มข้อมูลการจองหนังสือ
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-                    <div class="ms-auto" style="margin-top: 10px">
-                        <form id="form1" name="form1" class="form-inline" method="post" action="searchrebook.php">
-                                        <div class="form-group">
-                                           
-                                        <input name="search" type="text" id="search"  class="form-control" placeholder="ค้นหาหนังสือ">&nbsp;&nbsp;
-                                         <input type="submit"  value="ค้นหา" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;
-                                        
-                                        </div>
-                        </form>
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3"  style="margin-top: 15px">
+                        <div class="breadcrumb-title pe-3" style="font-size: 23px; "> รายการหนังสือ</div>
+                            <div class="ps-3">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0 p-0">
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            จัดการเพิ่มข้อมูลการจองหนังสือ
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
                     </div>
-                    <div class="ms-2" style="margin-top: 10px">
-                        <form id="form2" name="form2" class="form-inline" method="post" action="searchrecate.php">
-                                        <!-- <div class="form-group"> -->
-                                         <select class="custom-select" name="bc_id" id="bc_id" >
-                                         <?php
+                </div>
+            </div>    
+            <sup><h6 class="mb-0" style="margin-top: 20px">จัดการเพิ่มข้อมูลการจองหนังสือ</h6></sup>
+            <div class="container">
+                <div class="row justify-content-center ">
+                        <div class="col-md-4 ">       
+                            <form id="form1" name="form1"  method="post" action="searchrebook.php">
+                                <div class="form-group row">
+                                    <div class="input-group mr-2">
+                                        <input name="search" type="text" id="search"  class="form-control d-block" placeholder="ค้นหาหนังสือ">&nbsp;&nbsp;
+                                        <input type="submit"  value="ค้นหา" class="btn btn-primary  d-block">
+                                                    
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4 ">
+                            <form id="form2" name="form2"  method="post" action="searchrecate.php">
+                                <div class="form-group row">
+                                    <div class="input-group">
+                                        <select class="custom-select" name="bc_id" id="bc_id" >
+                                            <?php
                                                 $sql2 = "SELECT * from bookcategory ";
                                                 $result2 = mysql_query($sql2,$conn);
-                                                
-                                                while ($rs2=mysql_fetch_array($result2)){
-                                                    echo "<option value = \"$rs2[bc_id]\" ";
+                                                    while ($rs2=mysql_fetch_array($result2)){
+                                                        echo "<option value = \"$rs2[bc_id]\" ";
                                                     if ("$rs2[bc_id]") {echo'selected';}
-                                                    echo ">$rs2[bc_name]";
-                                                    echo "</option>\n";
-
-                                                }
-                                                ?>
-                                        </select>&nbsp;&nbsp;
-                                        <input type="submit"   value="ค้นหา" class="btn btn-primary">
-                                        <!-- </div> -->
-                        </form>
-                    </div>
-                   
-                    <div class="ms-auto" style="margin-top: 10px">
-                        <a class="btn btn-dark" href="frm_addbookings.php"><i class="far fa-list-alt"></i> รายการที่เลือก</a>
-                    </div>
+                                                        echo ">$rs2[bc_name]";
+                                                        echo "</option>\n";
+                                                    }
+                                            ?>
+                                        </select>
+                                            <input type="submit"   value="ค้นหา" class="btn btn-primary mr-2">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                            
+                        <div class="col-md-4">
+                           
+                                <div class="form-group row">
+                                    <div class="input-group">
+                                <a class="btn btn-dark btn-block" href="frm_addbookings.php"><i class="far fa-list-alt "></i> รายการที่เลือก</a>
+                                </div>
+                                </div>
+                          
+                        </div>
+                </div>
             </div>
-            <sup><h6 class="mb-0" style="margin-top: 20px">จัดการเพิ่มข้อมูลการจองหนังสือ</h6></sup>
             <br>
             <div class="container-fluid">
                     <div class="card shadow mb-4">
@@ -121,8 +141,9 @@ mysql_close();
                                         <div class="row row-cols-1 row-cols-md-4 g-4">
                                         <?php
                                         while ($row1 = mysql_fetch_object($result)) {
-                                        while ($row = mysql_fetch_object($result2)) {
-                                                    ?>
+                                            while ($row = mysql_fetch_object($result2)) {
+                                                $date = datethai($row1->bw_returndate);
+                                        ?>
                                                     
                                         <div class="col mb-5">
                                         <div class="card h-100">
@@ -142,7 +163,7 @@ mysql_close();
                                                 <a class="btn btn-success col-3"  href="frm_addbookings.php?bl_id=<?php echo $row->bl_id;?>&amp;act=add"><i class="fas fa-plus-circle"></i> </a>
                                             <?php } ?>
                                             <?php if($row->bl_status == 1 ){?>
-                                                <h6 class="card-title"><?php echo "สามารถจองหนังสือเล่มนี้ได้วันที่ : ".$row1->bw_returndate;?></h6>
+                                                <h6 class="card-title"><?php echo "สามารถจองหนังสือเล่มนี้ได้วันที่ : ".$date;?></h6>
                                             <?php } ?>
                                         </div>
                                         </div>

@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION["valid_uname"]) && isset($_SESSION["valid_pwd"])) {
     include "connect.php";
     include "script.php";
+    include 'linenotify.php';
     $valid_uname = $_SESSION["valid_uname"];
     $sql = "SELECT * FROM member WHERE m_id = '$valid_uname'";
     $result = mysql_query($sql, $conn)
