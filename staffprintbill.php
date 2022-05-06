@@ -34,10 +34,15 @@ $result = mysql_query($sql,$conn)or die("3. ไม่สามารถประ
 $rs = mysql_fetch_object($result);
 
 $sql2 = "select *
-            FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
-            inner join bill bi on rd.br_id = bi.br_id 
-            inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
-            inner join borrowing bw on bw.bw_id = bd.bw_id  where rd.rb_id =  $rb_id ";
+                FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
+                inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
+                inner join borrowing bw on bw.bw_id = bd.bw_id 
+                inner join booklist bl on bl.bl_id = bd.bl_id                
+                inner join book b on b.b_id = bl.b_id  
+                inner join bill bi on rd.br_id = bi.br_id 
+                inner join member m on m.m_id = bw.mw_id 
+                inner join usertype ut on ut.ut_id=m.ut_id
+                where rd.rb_id =  $rb_id ";
 $query = mysql_query($sql2,$conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
 $row = mysql_fetch_object($query);
 
@@ -227,7 +232,7 @@ mysql_close();
             <td  align="center">................................</td>
         </tr>
         <tr >
-            <td   align="center">( <?php echo"$rs1->m_name"; ?> ) </td>
+            <td   align="center">( <?php echo"$row->m_name"; ?> ) </td>
         </tr>
         <tr >
             <td  align="center">ผู้รับเงิน   </td>

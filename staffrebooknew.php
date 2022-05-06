@@ -4,15 +4,11 @@ include 'script.php';
 include 'check.php';
 $valid_uname = $_SESSION['valid_uname'];
 
-$date_start1="2017-05-30 07:30";
-$date_end1="2017-05-30 19:00";
- 
-if(time()>=strtotime($date_start1) && time()<=strtotime($date_end1)){
-    echo "Yes";
-}
+
 
 $sql = "select * 
-            FROM book b inner join bookcategory bc on b.bc_id = bc.bc_id where bl.new='1'";
+FROM book b inner join bookcategory bc on b.bc_id = bc.bc_id  
+inner join booklist bl on b.b_id = bl.b_id where bl.new='1'";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 ?>

@@ -53,7 +53,7 @@ or die ("Can't Query").mysql_error();
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800" style="margin-top: 20px">ข้อมูลประเภทผู้ใช้</h1>
                     </div>
-					 <div style=" width: 80%; height:10%;  text-align: left">
+                    <div class="mb-5" style="text-align: left">
                     <a  class="btn btn-success" href="frm_addusertype.php">
                         <i class="fas fa-plus-circle"></i> เพิ่มข้อมูลประเภทผู้ใช้
                     </a>
@@ -78,13 +78,13 @@ or die ("Can't Query").mysql_error();
                                 <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                             				<td width="85" align="center"> รหัสประเภทผู้ใช้</td>
-              							    <td width="100" align="center">ชื่อประเภท</td>
-						     				<td width="70" align="center">จำนวนวันที่ยืม</td>
-              							    <td width="70" align="center">อัตรค่าปรับ</td>
-							 				<td width="100" align="center">ระยะเวลาจองล่วงหน้า</td>
-             				 				<td width="60" align="center">จำนวนเล่ม</td>
-							 				<td width="10" align="center"></td>
+                             				<td width="15%" align="center"> รหัสประเภทผู้ใช้</td>
+              							    <td width="20%" align="center">ชื่อประเภท</td>
+						     				<td width="10%" align="center">จำนวนวันที่ยืม</td>
+              							    <td width="10%" align="center">อัตรค่าปรับ</td>
+							 				<td width="15%" align="center">ระยะเวลาจองล่วงหน้า</td>
+             				 				<td width="10%" align="center">จำนวนเล่ม</td>
+							 				<td width="15%" align="center"></td>
                                         </tr>
                                     </thead>
                                     <tbody>

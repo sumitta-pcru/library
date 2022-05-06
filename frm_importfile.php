@@ -45,7 +45,7 @@
 								<label>CSV/Excel File:</label>
 							</div>
 							<div class="controls">
-								<input type="file" name="file" id="file" class="input-large">
+								<input type="file" name="file" id="file" class="input-large" required = "required">
 							</div>
 						</div>
 						

@@ -18,7 +18,7 @@ $sql11 = "select *
             inner join bill bi on rd.br_id = bi.br_id 
             inner join booklist bl on bl.bl_id = bd.bl_id                
             inner join book b on b.b_id = bl.b_id  
-            inner join member m on m.m_id = bw.mw_id 
+            inner join member m on m.m_id = br.mr_id 
 			inner join usertype ut on ut.ut_id=m.ut_id where br.br_id =  $br_id ";
 $result11 = mysql_query($sql11, $conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
 $rs11 = mysql_fetch_object($result11);
@@ -267,7 +267,7 @@ mysql_close();
         
         <?php
         $sum = 0;
-        $sum = $rs->rate + $sum;
+        $sum = $rs->rate + $rs->rate ;
         $i++;
             }
          ?>

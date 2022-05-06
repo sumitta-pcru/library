@@ -64,8 +64,8 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                         <thead class="table-secondary" align="center">
                         <tr>
                             <td width="85" align="center">รหัสการคืน</td>
-                            <td width="70" align="center">รหัสรายการหนังสือ</td>
-                            <td width="70" align="center">ชื่อหนังสือ</td>
+                            <!-- <td width="70" align="center">รหัสรายการหนังสือ</td> -->
+                            <td width="70" align="center">วันที่ยืม</td>
                             <td width="100" align="center">วันที่คืน</td>
                             <td width="100" align="center">ค่าปรับ</td>
                             <td width="100" align="center">เจ้าหน้าที่</td>
@@ -80,8 +80,8 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                             ?>
                             <tr>
                                 <td align="center"><?php echo"$rs1->br_id";?></td>
-                                <td align="center"><?php echo"$rs1->bl_id";?></td>
-                                <td align="center"><?php echo"$rs1->b_name";?></td>
+                                <!-- <td align="center"><?php echo"$rs1->bl_id";?></td> -->
+                                <td align="center"><?php echo"$rs1->bw_date";?></td>
                                 <td align="center"><?php echo"$rs1->br_date";?></td>
                                 <td align="center"><?php echo"$rs1->rate";?></td>
                                 <td align="center"><?php echo"$rs1->m_name";?></td>

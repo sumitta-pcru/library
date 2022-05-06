@@ -141,6 +141,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                      inner join book b on b.b_id = bl.b_id
                                      inner join bookcategory bc on bc.bc_id = b.bc_id    
                                      inner join member m on m.m_id = bw.m_id where bd.bw_id='".$rs1->bw_id."' and bd.bd_status='1' ORDER BY bw.bw_id ASC ";
+                                    //  echo $sql1;
                                      $result1 = mysql_query($sql1,$conn)
                                      or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 

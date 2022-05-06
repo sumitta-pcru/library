@@ -56,7 +56,7 @@ or die ("Can't Query").mysql_error();
                         <h1 class="h3 mb-0 text-gray-800"  style="margin-top: 20px">ข้อมูลสมาชิก</h1>
                     </div>
 
-                    <div style=" width: 80%; height:10%;   text-align: left">
+                    <div class="mb-5" style="text-align: left">
                         <a  class="btn btn-success" href="frm_addmem.php">
                             <i class="fas fa-plus-circle"></i> เพิ่มข้อมูลสมาชิก
                         </a>
@@ -73,7 +73,7 @@ or die ("Can't Query").mysql_error();
                 <div class="container-fluid">
 
                     <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
+                    <div class="card shadow mb-4 ">
                         <!-- <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">รายละเอียดข้อมูล</h6>
                         </div> -->
@@ -82,15 +82,15 @@ or die ("Can't Query").mysql_error();
                                 <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <td width="10" align="center"> รหัสผู้ใช้</td>
-                                        <td width="10" align="center">ชื่อ – สกุล</td>
-                                        <td width="40" align="center">ที่อยู่</td>
-                                        <td width="40" align="center">วันที่เป็นสมาชิก</td>
-                                        <td width="5" align="center">ไอดีไลน์</td>
-                                        <td width="10" align="center">สถานะภาพ</td>
-                                        <td width="40" align="center">รหัสผ่าน</td>
-                                        <td width="10" align="center">ชื่อประเภท</td>
-                                        <td width="10" align="center"></td>
+                                        <td width="5%" align="center"> รหัสผู้ใช้</td>
+                                        <td width="15%" align="center">ชื่อ – สกุล</td>
+                                        <td width="15%" align="center">ที่อยู่</td>
+                                        <td width="10%" align="center">วันที่เป็นสมาชิก</td>
+                                        <td width="12%" align="center">ไอดีไลน์</td>
+                                        <td width="8%" align="center">สถานะภาพ</td>
+                                        <td width="8%" align="center">รหัสผ่าน</td>
+                                        <td width="10%" align="center">ชื่อประเภท</td>
+                                        <td width="15%" align="center"></td>
                                     </tr>
                                     </thead>
                                     <tbody>

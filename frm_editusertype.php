@@ -47,7 +47,7 @@ $rs = mysql_fetch_array($result);
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="container" align="center" >
-                                        <form  action="editeusertype.php" method="post" enctype="multipart/form-data"  style="margin-top: 10px;">
+                                        <form  action="editusertype.php" method="post" enctype="multipart/form-data"  style="margin-top: 10px;">
                                             <input hidden="ut_id" type="hidden" name="ut_id" value="<?php echo "$rs[ut_id]"?>">
                                                 <!-- Form Name -->
                                                 <legend><center><h2><b>แก้ไขข้อมูลประเภทผู้ใช้</b></h2></center></legend><br>

@@ -6,7 +6,7 @@ $valid_uname = $_SESSION['valid_uname'];
 $status = $_POST["status"];
 $sql = "select *
             FROM book b join bookcategory bc on  b.bc_id = bc.bc_id 
-            inner join booklist bl on bl.b_id = b.b_id WHERE bl.bl_status= $status ";
+            inner join booklist bl on bl.b_id = b.b_id WHERE bl.bl_status= $status";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 

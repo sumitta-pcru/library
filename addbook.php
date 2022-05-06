@@ -14,7 +14,7 @@
 	include "alert.php";
 
 	$b_id = $_POST['b_id'];
-    $b_isbn = $_POST['b_isbn'];
+    // $b_isbn = $_POST['b_isbn'];
 	$b_name = $_POST['b_name'];
 	$b_author = $_POST['b_author'];
 	$b_year = $_POST['b_year'];

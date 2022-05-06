@@ -55,7 +55,7 @@ or die ("Can't Query").mysql_error();
                         <h1 class="h3 mb-0 text-gray-800"  style="margin-top: 20px">ข้อมูลหมวดหมู่</h1>
                     </div>
 
-					 <div style=" width: 80%; height:10%;  text-align: left">
+                    <div class="mb-5" style="text-align: left">
 				    <a  class="btn btn-success" href="frm_addbookcategory.php">
                         <i class="fas fa-plus-circle"></i> เพิ่มข้อมูลหมวดหมู่
                     </a>

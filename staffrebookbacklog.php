@@ -87,8 +87,8 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                             <td align="center"><?php echo"$rs1->bw_returndate";?></td>
                                             <td align="center"><?php echo"$rs1->m_name";?></td>
                                             <td align="center"><?php
-                                                if($rs1->bl_status==0){
-                                                    echo "คืนแล้ว";
+                                                if($rs1->bd_status==1){
+                                                    echo "ยังไม่คืน";
                                                 }
                                                 else{
                                                     echo "ยังไม่คืน";

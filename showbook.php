@@ -51,7 +51,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800" style="margin-top: 20px">ข้อมูลหนังสือ</h1>
                     </div>
-					 <div style=" width: 80%; height:5%;  text-align: left">
+                    <div class="mb-5" style="text-align: left">
                          <!-- <a  class="btn btn-success" href="frm_addbook.php"  >
                        <i class="fas fa-barcode"></i> เพิ่มบาร์โค้ด
                     </a> -->

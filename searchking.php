@@ -6,7 +6,7 @@ $valid_uname = $_SESSION['valid_uname'];
 $bk_date = $_POST["bk_date"];
 
 $sql = "select bl.bl_id,b.b_name,b.b_pic,bc.bc_name,COUNT(bl.bl_id) as num
-            FROM bookingdetails bk inner join bookings bs on bk.bk_id=bs.bk_id
+            FROM bookingsdetails bk inner join bookings bs on bk.bk_id=bs.bk_id
             inner join booklist bl on bk.bl_id=bl.bl_id
             inner join book b on b.b_id = bl.b_id
             inner join bookcategory bc on b.bc_id = bc.bc_id 
