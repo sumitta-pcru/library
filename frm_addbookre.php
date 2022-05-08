@@ -135,9 +135,7 @@ $valid_uname = $_SESSION['valid_uname'];
                                        
                                        
                                     
-                                    <table width="250%" cellspacing="0" border="0" align="center"
-                                        class="table table-bordered" style="margin-top: 20px;">
-
+                                    <table width="250%" cellspacing="0" border="0" align="center" class="table table-bordered" style="margin-top: 20px;">
                                         <div style="margin-top: 5px;">
                                             <a height="40" colspan="7" align="center"
                                                 bgcolor="#CCCCCC"><strong><b>รายการหนังสือ</span></strong></a>
@@ -147,7 +145,6 @@ $valid_uname = $_SESSION['valid_uname'];
                                                 <td>ที่</td>
                                                 <td align="center">รหัสรายการหนังสือ</td>
                                                 <td align="center">ชื่อหนังสือ</td>
-                                                
                                                 <td align="center">ลบ</td>
                                             </tr>
                                         </thead>

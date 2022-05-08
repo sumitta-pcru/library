@@ -9,12 +9,55 @@ $sql = "select *
                 inner join member m on m.m_id = br.mr_id  
                 inner join borrowingdetails bd on bi.bd_id = bd.bd_id
                 inner join borrowing bw on bw.bw_id = bd.bw_id 
-                inner join bill bil on br.br_id = bil.br_id 
+                inner join bill bll on bi.rb_id = bll.rb_id  
                 inner join booklist bl on bd.bl_id = bl.bl_id
                 inner join book b on b.b_id = bl.b_id   where bw.m_id = '$valid_uname' group by br.br_id ";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+
+$sql1 	= "select *
+            FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
+            inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
+            inner join borrowing bw on bw.bw_id = bd.bw_id 
+            inner join bill bi on rd.rb_id = bi.rb_id 
+            inner join booklist bl on bl.bl_id = bd.bl_id                
+            inner join book b on b.b_id = bl.b_id  
+            inner join member m on m.m_id = bw.m_id 
+			inner join usertype ut on ut.ut_id=m.ut_id where  bw.m_id = '$valid_uname' ";
+$result1 = mysql_query($sql1,$conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
+$sql2 = "select *
+            FROM bookreturndetails bi  inner join bookreturn br  on bi.br_id = br.br_id 
+                inner join member m on m.m_id = br.mr_id  
+                inner join borrowingdetails bd on bi.bd_id = bd.bd_id
+                inner join borrowing bw on bw.bw_id = bd.bw_id 
+                inner join bill bll on bi.rb_id = bll.rb_id  
+                inner join booklist bl on bd.bl_id = bl.bl_id
+                inner join book b on b.b_id = bl.b_id   where bw.m_id = '$valid_uname' group by br.br_id ";
+$result2 = mysql_query($sql2,$conn)
+or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+// while ($rs2 = mysql_fetch_object($result2)){
+    $i=0;
+      while ($rs1 = mysql_fetch_array($result1)) {
+          $br_id[$i] = $rs1['br_id'];
+            // $sum =0;
+            if($br_id[$i]==$br_id[$i]){
+                
+            }else{
+                echo $i;
+            }
+        
+                $i++; 
+            }
+     
+            
+
+           
 ?>
+
+
+
+
+
     <!doctype html>
     <html lang="en">
     <head>
@@ -76,24 +119,34 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                         <tbody>
 
                         <?php
-                        while ($rs1 = mysql_fetch_object($result)) {
+                         
+                        $i=0;
+                        while ($rs = mysql_fetch_object($result)) {
+                           
+                              
+               
+                            
                             ?>
                             <tr>
-                                <td align="center"><?php echo"$rs1->br_id";?></td>
-                                <!-- <td align="center"><?php echo"$rs1->bl_id";?></td> -->
-                                <td align="center"><?php echo"$rs1->bw_date";?></td>
-                                <td align="center"><?php echo"$rs1->br_date";?></td>
-                                <td align="center"><?php echo"$rs1->rate";?></td>
-                                <td align="center"><?php echo"$rs1->m_name";?></td>
+                                <td align="center"><?php echo"$rs->br_id";?></td>
+                                <!-- <td align="center"><?php echo"$rs->bl_id";?></td> -->
+                                <td align="center"><?php echo"$rs->bw_date";?></td>
+                                <td align="center"><?php echo"$rs->br_date";?></td>
+                                <td align="center"><?php echo"$rs->rate";?></td>
+                                <td align="center"><?php echo"$rs->m_name";?></td>
                                 <td align="center">
-                                            <a class="btn btn-secondary"  href="memprintbill.php?br_id=<?php echo $rs1->br_id;?>">
+                                            <a class="btn btn-secondary"  href="memprintbill.php?br_id=<?php echo $rs->br_id;?>&&rb_id=<?php echo $rs->rb_id;?>">
                                             <i class="fas fa-print"></i> พิมพ์ใบเสร็จ
                                             </a>
                                         </td>
                             </tr>
 
                             <?php
+
                         }
+
+                        
+    
                         ?>
                         </tbody>
                     </table>

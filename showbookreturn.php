@@ -114,7 +114,7 @@ $sql1 = "select *
                                         //  while ($row = mysql_fetch_object($result1)) {
                                     ?>
                                     <tr>
-                                        <td align="center"><?php echo"$rs->br_id";?></td>
+                                        <td align="center"><?php echo"$rs->rb_id";?></td>
                                         <td align="center"><?php echo"$rs->bw_date";?></td>
                                         <!-- <td align="center"><?php echo"$rs->bw_returndate";?></td> -->
                                         <td align="center"><?php echo"$rs->br_date";?></td>

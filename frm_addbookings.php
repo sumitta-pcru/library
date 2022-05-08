@@ -1,6 +1,7 @@
 <?php
 include "connect.php";
 include "alert.php";
+include 'script.php';
 	session_start();
 
     
@@ -118,6 +119,7 @@ else{
             })
         </script>
          <link href="jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+         <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css">
     </head>
     <body>
     <?php include "./h/member_menu.php"; ?>
@@ -144,54 +146,45 @@ else{
                 </div>
                 <div class="card-body">
                 <form action="addbookings.php" method="post" enctype="multipart/form-data" style="margin-top: 10px; margin-bottom: 10px;">
-
                     <table class="table" style="width: 50%; height: 100%"  align="center" >
-                        <tbody>
+                        <tbody >
                         <tr>
-                                <div class="form-group row" align="center">
-                                    <span style="padding-left:180px"></span>
-                                    <label for="colFormLabel" class="col-sm-2 ml-md-5 col-form-label">ชื่อผู้ใช้</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control " value="<?php echo "$rs1[m_name]"; ?>"  readonly>
-
-                                    </div>
+                            <div class="form-group row" align="center">
+                                <span style="padding-left:180px"></span>
+                                <label for="colFormLabel" class="col-sm-2 ml-md-5 col-form-label">ชื่อผู้ใช้</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control " value="<?php echo "$rs1[m_name]"; ?>"  readonly>
                                 </div>
+                            </div>
                         </tr>
 
                         <tr>
-                                <div class="form-group row" align="center">
-                                    <span style="padding-left:180px"></span>
-                                    <label for="colFormLabel" class="col-sm-2 ml-md-5 col-form-label">วันที่จอง</label>
-                                    <div class="col-sm-6">
+                            <div class="form-group row" align="center">
+                                <span style="padding-left:180px"></span>
+                                <label for="colFormLabel" class="col-sm-2 ml-md-5 col-form-label">วันที่จอง</label>
+                                <div class="col-sm-6">
                                     <input type="text" class="form-control" id="bk_date" name="bk_date"
                                                value="<?php echo $date; ?>" readonly>
-                                    </div>
                                 </div>
+                            </div>
                         </tr>
-
-                        
-
                         <tr>
                             <td align="center">
-                            <input class="btn btn-success" type="submit" value="บันทึก">
-                           
-                              
+                                <input class="btn btn-success" type="submit" value="บันทึก">  
                             </td>
                         </tr>
                         </tbody>
-
                     </table>
-                    <input name ="act" type="hidden" id="act" value="<?php echo "$_GET[act]"; ?> ">
-
-                <div class="container-fluid">
-  <div class="row">
-        <div class="col-md-2"></div>
-                <div class="col-md-9">
-                      
-                            <table  width="250%" cellspacing="0" border="0" align="center" class="table table-bordered" id="table">
-                                    <div>
+                        <input name ="act" type="hidden" id="act" value="<?php echo "$_GET[act]"; ?> ">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                                <div class="col-md-9">
+                                <div class="table-responsive">
+                                    <table  width="250%" cellspacing="0" border="0" align="center" class="table table-bordered" id="table">
+                                        <div>
                                             <a height="40" colspan="7" align="center" bgcolor="#CCCCCC"><strong><b>รายการหนังสือ</span></strong></a>
-                                    </div>	
+                                        </div>	
                                         <thead class="table-secondary">
                                                 <tr>
                                                 <td>ที่</td>
@@ -228,34 +221,34 @@ else{
 												//}
 											}
 										}
-									?>
-
+									    ?>
                                         <tr>
-                                      
-                                        <td colspan="5" align="right">
-                                            <button type="button" name="Submit2"  onclick="window.location='frm_addbooking.php';" class="btn btn-warning"> 
-                                            <span class="glyphicon glyphicon-shopping-cart"> </span><i class="far fa-arrow-alt-circle-left" style="color:#000000"></i> <font color="#000000">กลับไปหน้ารายการหนังสือ</font>  </button>
-                                            <button type="button" name="Submit2"  onclick="window.location='delcart.php';"  class="btn btn-danger btndels"> 
-                                            <span class="glyphicon glyphicon-shopping-cart btndels"> </span>ยกเลิก </button>
-                                           
+                                            <td colspan="5" align="right">
+                                                <button type="button" name="Submit2"  onclick="window.location='frm_addbooking.php';" class="btn btn-warning"> 
+                                                    <span class="glyphicon glyphicon-shopping-cart"> </span><i class="far fa-arrow-alt-circle-left" style="color:#000000"></i> <font color="#000000">กลับไปหน้ารายการหนังสือ</font>  </button>
+                                                <button type="button" name="Submit2"  onclick="window.location='delcart.php';"  class="btn btn-danger btndels"> 
+                                                    <span class="glyphicon glyphicon-shopping-cart btndels"> </span>ยกเลิก </button>
                                             </td>
                                         </tr>
                                         </tbody>
-							    </table>
-                               
-                        </form>
-                </div>
+							        </table>
+                                    </div>
+                                </div> 
+                            </div>
+                </form>
+               
         </div>
                             </div>
                      </div>
 
                 </div>
             </div>
-        </div>
-    </div>
+        <!-- </div>
+    </div> -->
     
     <script type="text/javascript" src="jquery-ui/jquery.js"></script>
     <script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/sb-admin-2.js"></script>
   
     <!-- <script>
     $(document).ready(function(){

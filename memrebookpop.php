@@ -10,7 +10,7 @@ $sql = "select b.b_id,b.b_name,b.b_pic,bc.bc_name,COUNT(b.b_id) as num
             inner join borrowingdetails bw on bw.bl_id=bl.bl_id 
             inner join borrowing bt on bw.bw_id=bt.bw_id 
             where DATE_FORMAT(bt.bw_date,'%Y') = $date 
-            group by b.b_id order by num DESC LIMIT 3";
+            group by b.b_id order by num DESC LIMIT 6";
 $result = mysql_query($sql,$conn)
 
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();

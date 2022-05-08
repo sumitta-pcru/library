@@ -111,7 +111,7 @@ else if ($bl_id !=null) {
 echo  "<script>
 $(document).ready(function(){
     Swal.fire({
-        title: '<h1>บันทึกข้อมูลเรียบร้อยแล้ว</h1>',
+        title: '<h3>บันทึกข้อมูลเรียบร้อยแล้ว</h3>',
         text: '',
         type: 'success',
         //showCancelButton: true,

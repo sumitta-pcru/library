@@ -2,6 +2,7 @@
 include 'connect.php';
 include 'script.php';
 include 'check.php';
+include 'linenotify.php';
 
 $valid_uname = $_SESSION['valid_uname'];
 $sql = "select *

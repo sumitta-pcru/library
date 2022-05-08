@@ -40,28 +40,28 @@ if(empty($_SESSION['return'])){
     $sql1 = "INSERT INTO bookreturn (br_date,br_totalrate,mr_id) VALUES('$br_date','$rate','$valid_uname')";
     $query2 = mysql_query($sql1, $conn) or die ("Error in query: $sql1 " . mysql_error());
     $br_id = mysql_insert_id();
-//     foreach ($_SESSION['return'] as $bl_id) {     
+    foreach ($_SESSION['return'] as $bl_id) {     
       
    
-//         $sql3="select * FROM borrowing bw   inner join borrowingdetails bd on bd.bw_id = bw.bw_id inner join member m  on bw.m_id = m.m_id where bd.bl_id= '$bl_id' and bd.bd_status='1' ";
-//         $query7= mysql_query($sql3,$conn);
-//         $i = 0;
-//         while($result3=mysql_fetch_array($query7)){
-//             $bl_id[$i] = $result3['bl_id'];
-//             $bw_returndate[$i] = $result3['bw_returndate'];
+        $sql3="select * FROM borrowing bw   inner join borrowingdetails bd on bd.bw_id = bw.bw_id inner join member m  on bw.m_id = m.m_id where bd.bl_id= '$bl_id' and bd.bd_status='1' ";
+        $query7= mysql_query($sql3,$conn);
+        $i = 0;
+        while($result3=mysql_fetch_array($query7)){
+            $bl_id[$i] = $result3['bl_id'];
+            $bw_returndate[$i] = $result3['bw_returndate'];
            
       
-//         // $sql4="select * FROM borrowing bw   inner join borrowingdetails bd on bd.bw_id = bw.bw_id inner join member m  on bw.m_id = m.m_id where bd.bl_id= '$bl_id[$i] '  and bd.bd_status='1' ";
-//         // $query6= mysql_query($sql4,$conn);
-//         // $result4=mysql_fetch_array($query6);
+        // $sql4="select * FROM borrowing bw   inner join borrowingdetails bd on bd.bw_id = bw.bw_id inner join member m  on bw.m_id = m.m_id where bd.bl_id= '$bl_id[$i] '  and bd.bd_status='1' ";
+        // $query6= mysql_query($sql4,$conn);
+        // $result4=mysql_fetch_array($query6);
     
-//     if($br_date>=$bw_returndate[$i]){
-//             $sql6 = "INSERT INTO bill (bi_year,br_id) VALUES('$year','$br_id')";
-//             $query4 = mysql_query($sql6, $conn) or die ("Error in query: $sql6 " . mysql_error());
-//         } 
-//         $i++;
-//  }    
-//  }   
+    if($br_date>=$bw_returndate[$i]){
+            $sql6 = "INSERT INTO bill (bi_year,br_id) VALUES('$year','$br_id')";
+            $query4 = mysql_query($sql6, $conn) or die ("Error in query: $sql6 " . mysql_error());
+        } 
+        $i++;
+ }    
+ }   
         foreach ($_SESSION['return'] as $bl_id) {     
             $sql="select * FROM borrowing bw   inner join borrowingdetails bd on bd.bw_id = bw.bw_id inner join member m  on bw.m_id = m.m_id where bd.bl_id= '$bl_id' and bd.bd_status='1' ";
             $query= mysql_query($sql,$conn);
@@ -111,9 +111,9 @@ if(empty($_SESSION['return'])){
                     // $br_id = mysql_insert_id();
                     $sql3 = "INSERT INTO bookreturndetails (br_id,rate,bd_id) VALUES('$br_id','$sum','$result->bd_id')";
                     $query3 = mysql_query($sql3, $conn) or die ("Error in query: $sql3 " . mysql_error());
-                    $rb_id = mysql_insert_id();
-                    $sql6 = "INSERT INTO bill (bi_year,rb_id) VALUES('$year','$rb_id')";
-                    $query4 = mysql_query($sql6, $conn) or die ("Error in query: $sql6 " . mysql_error());
+                    // $rb_id = mysql_insert_id();
+                    // $sql6 = "INSERT INTO bill (bi_year,br_id) VALUES('$year','$rb_id')";
+                    // $query4 = mysql_query($sql6, $conn) or die ("Error in query: $sql6 " . mysql_error());
 
                     $sql4 = "Update borrowingdetails set bd_status ='$bd_status'   where bd_id = '$result->bd_id'";
                     $result1 = mysql_query($sql4, $conn) or die ("Error in query: $sql4 " . mysql_error());

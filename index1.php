@@ -9,7 +9,7 @@ $result1 = mysql_query($sql1,$conn);
 $sql2 = "select b.b_id,b.b_name,b.b_pic,bc.bc_name,COUNT(b.b_id) as num
             FROM book b inner join bookcategory bc on b.bc_id = bc.bc_id 
             inner join booklist bl on bl.b_id=b.b_id
-            inner join borrowingdetails bw on bw.bl_id=bl.bl_id group by b.b_id order by num  DESC LIMIT 3";
+            inner join borrowingdetails bw on bw.bl_id=bl.bl_id group by b.b_id order by num  DESC LIMIT 6";
 $result2 = mysql_query($sql2,$conn)
 
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();

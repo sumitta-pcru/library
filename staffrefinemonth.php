@@ -170,7 +170,7 @@ $thai_month_arr=array(
                                                         inner join borrowing bw on bw.bw_id = bd.bw_id 
                                                         inner join booklist bl on bl.bl_id = bd.bl_id                
                                                         inner join book b on b.b_id = bl.b_id 
-                                                        inner join bill bi on rd.br_id = bi.br_id  
+                                                        inner join bill bi on rd.rb_id = bi.rb_id  
                                                         where br.br_date>='".$start_date_check."' AND br.br_date<='".$end_date_check."' ORDER BY br.br_id ASC ";
                                     $result = mysql_query($sql,$conn);
 
@@ -178,7 +178,7 @@ $thai_month_arr=array(
                                     while ($rs = mysql_fetch_object($result)) {
                                     ?>
                                     <tr>
-                                        <td align="center"><?php echo"$rs->br_id";?></td>
+                                        <td align="center"><?php echo"$rs->rb_id";?></td>
                                         <td align="center"><?php echo"$rs->b_name";?></td>
                                         <td align="center"><?php echo"$rs->rate	";?></td>
                                         <td align="center"><?php echo"$rs->br_date";?></td>

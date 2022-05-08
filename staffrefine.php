@@ -10,7 +10,8 @@ $sql = "select *
             inner join borrowing bw on bw.bw_id = bd.bw_id 
             inner join booklist bl on bl.bl_id = bd.bl_id                
             inner join book b on b.b_id = bl.b_id
-            inner join bill bi on rd.br_id = bi.br_id ";
+            inner join bill bi on rd.rb_id = bi.rb_id where rd.rate NOT IN('0.00') "; 
+            // group by br.br_id 
 
 $result = mysql_query($sql, $conn)
 or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
@@ -92,7 +93,7 @@ include 'staff_menu.php'
                                     while ($rs = mysql_fetch_object($result)) {
                                     ?>
                                     <tr>
-                                        <td align="center"><?php echo"$rs->br_id";?></td>
+                                        <td align="center"><?php echo"$rs->rb_id";?></td>
                                         <td align="center"><?php echo"$rs->b_name";?></td>
                                         <td align="center"><?php echo"$rs->rate	";?></td>
                                         <td align="center"><?php echo"$rs->br_date";?></td>

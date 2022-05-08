@@ -4,8 +4,8 @@ if (isset($_SESSION["valid_uname"]) && isset($_SESSION["valid_pwd"])) {
 include "connect.php";
 // include 'scriptmem.php';
 // include 'script.php';
-
 $br_id = $_GET["br_id"];
+$rb_id = $_GET["rb_id"];
 $valid_uname = $_SESSION['valid_uname'];
 $sql1 = "SELECT * FROM member WHERE m_id = '$valid_uname'";
 $result1 = mysql_query($sql1, $conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
@@ -15,11 +15,11 @@ $sql11 = "select *
             FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
             inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
             inner join borrowing bw on bw.bw_id = bd.bw_id 
-            inner join bill bi on rd.br_id = bi.br_id 
+            inner join bill bi on rd.rb_id = bi.rb_id  
             inner join booklist bl on bl.bl_id = bd.bl_id                
             inner join book b on b.b_id = bl.b_id  
             inner join member m on m.m_id = br.mr_id 
-			inner join usertype ut on ut.ut_id=m.ut_id where br.br_id =  $br_id ";
+			inner join usertype ut on ut.ut_id=m.ut_id where rd.rb_id =  $rb_id ";
 $result11 = mysql_query($sql11, $conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
 $rs11 = mysql_fetch_object($result11);
 
@@ -28,22 +28,22 @@ $sql 	= "select *
             FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
             inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
             inner join borrowing bw on bw.bw_id = bd.bw_id 
-            inner join bill bi on rd.br_id = bi.br_id 
+            inner join bill bi on rd.rb_id = bi.rb_id 
             inner join booklist bl on bl.bl_id = bd.bl_id                
             inner join book b on b.b_id = bl.b_id  
             inner join member m on m.m_id = bw.m_id 
-			inner join usertype ut on ut.ut_id=m.ut_id where br.br_id =  $br_id ";
+			inner join usertype ut on ut.ut_id=m.ut_id where rd.br_id = '$br_id' ";
 $result = mysql_query($sql,$conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
 
 $sql3 	= "select *
             FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
             inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
             inner join borrowing bw on bw.bw_id = bd.bw_id 
-            inner join bill bi on rd.br_id = bi.br_id 
+            inner join bill bi on rd.rb_id = bi.rb_id  
             inner join booklist bl on bl.bl_id = bd.bl_id                
             inner join book b on b.b_id = bl.b_id  
             inner join member m on m.m_id = bw.m_id 
-			inner join usertype ut on ut.ut_id=m.ut_id where br.br_id =  $br_id ";
+			inner join usertype ut on ut.ut_id=m.ut_id where rd.rb_id =  $rb_id ";
 $result3 = mysql_query($sql3,$conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
 $rs2 = mysql_fetch_object($result3);
 
@@ -64,7 +64,7 @@ $rs2 = mysql_fetch_object($result3);
 $sql2 = "select *
             FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
             inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
-            inner join borrowing bw on bw.bw_id = bd.bw_id  where br.br_id =  $br_id ";
+            inner join borrowing bw on bw.bw_id = bd.bw_id  where rd.rb_id =  $rb_id ";
 $query = mysql_query($sql2,$conn)or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
 $row = mysql_fetch_object($query);
 
@@ -267,7 +267,13 @@ mysql_close();
         
         <?php
         $sum = 0;
-        $sum = $rs->rate + $rs->rate ;
+        if($i>1){
+            $sum = $rs->rate +  $rs->rate ;
+        }else{
+            $sum = $rs->rate +  $sum ;
+        }
+        // $sum = 0;
+      
         $i++;
             }
          ?>

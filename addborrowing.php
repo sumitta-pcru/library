@@ -80,7 +80,7 @@ if(empty($_SESSION['shopping_cart'])){
     }
 } 
   
-echo $holding;
+// echo $holding;
 // if($lending>1){
 //    echo"<script language=\"javascript\">";
 //    echo"alert('หนังสือเล่มนี้ถูกสมาชิกนี้ยืมอยู่แล้ว');";

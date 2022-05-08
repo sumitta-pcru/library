@@ -26,7 +26,7 @@ $sql 	= "select *
             inner join borrowing bw on bw.bw_id = bd.bw_id 
             inner join booklist bl on bl.bl_id = bd.bl_id                
             inner join book b on b.b_id = bl.b_id  
-            inner join bill bi on rd.br_id = bi.br_id 
+            inner join bill bi on rd.rb_id = bi.rb_id 
             inner join member m on m.m_id = bw.m_id 
 			inner join usertype ut on ut.ut_id=m.ut_id
 			where rd.rb_id =  $rb_id ";
@@ -39,7 +39,7 @@ $sql2 = "select *
                 inner join borrowing bw on bw.bw_id = bd.bw_id 
                 inner join booklist bl on bl.bl_id = bd.bl_id                
                 inner join book b on b.b_id = bl.b_id  
-                inner join bill bi on rd.br_id = bi.br_id 
+                inner join bill bi on rd.rb_id = bi.rb_id  
                 inner join member m on m.m_id = bw.mw_id 
                 inner join usertype ut on ut.ut_id=m.ut_id
                 where rd.rb_id =  $rb_id ";
@@ -162,7 +162,7 @@ mysql_close();
             <td colspan="2">&nbsp;</td>
         </tr>
         <tr>
-            <td height="55" colspan="2" align="center"><img src="public/images/logo.png" style="padding-left:170px" class="float-left" width="100" height="100" alt=""/><h1 align="center" style="font-family: 'TH SarabunPSK'; text-align: center; padding-right:280px;"> ใบเสร็จรับเงิน</h1></td>
+            <td height="55" colspan="2" align="center"><img src="public/images/logo.png" style="padding-left:170px" class="float-left" width="100" height="100" alt=""/><h1 align="center" style="font-family: 'TH SarabunPSK'; text-align: center; padding-right:280px;"> ใบเสร็จรับเงิน  </h1></td>
         </tr>
         <tr>
             <td colspan="2" align="center">โรงเรียนวังโป่งศึกษา</td>

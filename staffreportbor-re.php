@@ -8,7 +8,7 @@ $sql = "select *
             inner join booklist bl on bd.bl_id = bl.bl_id
             inner join book b on b.b_id = bl.b_id
             inner join bookcategory bc on bc.bc_id = b.bc_id    
-            inner join member m on m.m_id = bw.m_id ";
+            inner join member m on m.m_id = bw.m_id where bw.m_id = '$valid_uname ' ";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 ?>
