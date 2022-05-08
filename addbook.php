@@ -19,7 +19,7 @@
 	$b_author = $_POST['b_author'];
 	$b_year = $_POST['b_year'];
 	$b_place = $_POST['b_place'];
-    $b_num = $_POST['b_num'];
+    $b_num = '0';
     $b_price = $_POST['b_price'];
     // $b_date = $_POST['b_date'];
 
@@ -30,11 +30,12 @@
 
 	if ($b_id && $b_name && $b_author && $b_year && $b_place && $b_num && $b_price  ) {
 
-		$sql = "SELECT * FROM book WHERE b_id ='$b_id ' or b_name = '$b_name' or b_author = '$b_author' or b_year = '$b_year' or b_place = '$b_place' or b_num = '$b_num' or b_price = '$b_price'  ";
+		$sql = "SELECT * FROM book WHERE b_id ='$b_id ' or b_name = '$b_name'   ";
 		$result = mysql_query($sql,$conn);
 		$total = mysql_fetch_array($result);
 
 		if ($total == 0) {
+			
 			if ($fileupload != "") {
 				if (!is_dir("./picture")) {
 					mkdir("./picture");

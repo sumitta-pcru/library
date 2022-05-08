@@ -4,7 +4,7 @@ include 'check.php';
 
 $valid_uname = $_SESSION['valid_uname'];
 
-$sql = "select *
+$sql = "select br.br_id,bi.rb_id,bw.bw_date,br.br_date,bi.rate,m.m_name , COUNT(*) as num
             FROM bookreturndetails bi  inner join bookreturn br  on bi.br_id = br.br_id 
                 inner join member m on m.m_id = br.mr_id  
                 inner join borrowingdetails bd on bi.bd_id = bd.bd_id
@@ -35,24 +35,22 @@ $sql2 = "select *
                 inner join book b on b.b_id = bl.b_id   where bw.m_id = '$valid_uname' group by br.br_id ";
 $result2 = mysql_query($sql2,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
-// while ($rs2 = mysql_fetch_object($result2)){
-    $i=0;
-      while ($rs1 = mysql_fetch_array($result1)) {
-          $br_id[$i] = $rs1['br_id'];
-            // $sum =0;
-            if($br_id[$i]==$br_id[$i]){
+// // while ($rs2 = mysql_fetch_object($result2)){
+//     $i=0;
+//       while ($rs1 = mysql_fetch_array($result1)) {
+//           $br_id[$i] = $rs1['br_id'];
+//             // $sum =0;
+//             if($br_id[$i]==$br_id[$i]){
                 
-            }else{
-                echo $i;
-            }
+//             }else{
+//                 echo $i;
+//             }
         
-                $i++; 
-            }
+//                 $i++; 
+//             }
      
-            
-
-           
-?>
+        
+// ?>
 
 
 
@@ -122,7 +120,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                          
                         $i=0;
                         while ($rs = mysql_fetch_object($result)) {
-                           
+                           $sum = $rs->rate * $rs->num;
                               
                
                             
@@ -132,7 +130,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                 <!-- <td align="center"><?php echo"$rs->bl_id";?></td> -->
                                 <td align="center"><?php echo"$rs->bw_date";?></td>
                                 <td align="center"><?php echo"$rs->br_date";?></td>
-                                <td align="center"><?php echo"$rs->rate";?></td>
+                                <td align="center"><?php echo $sum." บาท";?></td>
                                 <td align="center"><?php echo"$rs->m_name";?></td>
                                 <td align="center">
                                             <a class="btn btn-secondary"  href="memprintbill.php?br_id=<?php echo $rs->br_id;?>&&rb_id=<?php echo $rs->rb_id;?>">

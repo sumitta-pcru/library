@@ -13,11 +13,22 @@ include "connect.php";
 include "script.php";
 include "alert.php";
 $bc_id = $_POST['bc_id'];
-$sql = "DELETE FROM bookcategory WHERE bc_id = '$bc_id'";
-mysql_query($sql,$conn)
+$sql1 = "SELECT COUNT(b.bc_id) FROM book b inner join  bookcategory  bc on b.bc_id = bc.bc_id where b.bc_id = '$bc_id'";
+$result2 = mysql_query($sql1,$conn);
+$record2=mysql_fetch_array($result2);
+$holding=$record2[0];
+
+if($holding>0){
+    echo success_h3("ไม่สามรถลบข้อมูลได้","showbookcategory.php");
+}else{
+    $sql = "DELETE FROM bookcategory WHERE bc_id = '$bc_id'";
+    mysql_query($sql,$conn)
 	or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+    
+    echo success_h3("ลบข้อมูลเรียบร้อยแล้ว","showbookcategory.php");
+}
 mysql_close();
-echo success_h3("ลบข้อมูลเรียบร้อยแล้ว","showbookcategory.php")
+
 ?>
 </body>
 </html>

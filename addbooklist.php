@@ -35,7 +35,15 @@
     // echo $datestart1.$date1;
     $a = new DateTime($_POST['b_date']);
     $b_date =$a->format('Y-m-d');
+
+
+    $sql5 ="SELECT b_num FROM book where b_id = '$b_id'";
+    $query = mysql_query($sql5,$conn);
+    $rs = mysql_fetch_array($query);
     
+    $sum = 0;  
+    $sum = $rs["b_num"] + 1;
+
 	if ($bl_id!= NULL ) {
 
 		$sql = "SELECT * FROM booklist where bl_id = '$bl_id' ";
@@ -54,6 +62,9 @@
                 $sqlup1 = "UPDATE booklist SET new = '$new_status' WHERE MONTH(b_date)  NOT BETWEEN $monthend1 AND  $monthend2";
                 $result1 = mysql_query($sqlup1 , $conn) or die ("Error in query: $sqlup1 " . mysql_error());
 
+                $sqlup3 = "UPDATE book SET b_num = '$sum' WHERE b_id ='$b_id'";
+                $result3 = mysql_query($sqlup3 , $conn) or die ("Error in query: $sqlup3 " . mysql_error());
+
                 $sql1 = "INSERT INTO booklist (bl_id,bl_status,b_date,b_id,new) VALUES('$bl_id','$bl_status','$b_date','$b_id','$new_status1')"; 
                 $result1 = mysql_query($sql1, $conn) or die ("Error in query: $sql1 " . mysql_error());
                 echo success_h3("บันทึกข้อมูลเรียบร้อยเเล้ว", "showbook.php");
@@ -62,6 +73,10 @@
                 $sqlup2 = "UPDATE booklist SET new = '$new_status' WHERE MONTH(b_date) BETWEEN $monthend1 AND  $monthend2";
                 $result2 = mysql_query($sqlup2 , $conn) or die ("Error in query: $sqlup2 " . mysql_error());
     
+                $sqlup4 = "UPDATE book SET b_num = '$sum' WHERE b_id ='$b_id'";
+                $result4 = mysql_query($sqlup4 , $conn) or die ("Error in query: $sqlup4 " . mysql_error());
+
+
                 $sql2 = "INSERT INTO booklist (bl_id,bl_status,b_date,b_id,new) VALUES('$bl_id','$bl_status','$b_date','$b_id','$new_status1')"; 
                 $result2 = mysql_query($sql2, $conn) or die ("Error in query: $sql2 " . mysql_error());
                 echo success_h3("บันทึกข้อมูลเรียบร้อยเเล้ว", "showbook.php");

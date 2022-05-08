@@ -129,7 +129,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
 
                                         <td align="center">
                                             <a class="btn btn-secondary"  href="showbooklist.php?b_id=<?php echo $rs1->b_id;?>">
-                                                <i class="fas fa-angle-double-right"></i>
+                                            <i class="fas fa-list-ol"></i>
                                             </a>
                                             <a class="btn btn-success"  href="frm_addbooklist.php?b_id=<?php echo $rs1->b_id;?>">
                                                 <i class="fas fa-plus-square"></i>

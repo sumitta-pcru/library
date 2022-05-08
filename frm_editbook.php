@@ -86,27 +86,7 @@ $rs = mysql_fetch_array($result);
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <span style="padding-left:150px"></span>
-                                                <div class="col-md-4 mb-3" align="left">
-                                                    <label for="validationDefault01">สำนักพิมพ์</label>
-                                                    <div style="width: -moz-fit-content" >
-                                                        <textarea class="form-control" id="b_place"name="b_place" placeholder="กรุณาใส่สำนักพิมพ์" rows="3"><?php echo "$rs[b_place]";?></textarea>
-                                                    </div>
-                                                </div>
-                                                 <span style="padding-left:150px"></span>
-                                                <div class="col-md-4 mb-3" align="left">
-                                                    <label for="validationDefault02">ราคา</label>
-                                                    <input type="text" class="form-control" value="<?php echo "$rs[b_price]";?>" name="b_price" id="b_price" placeholder="กรุณาใส่ราคา"
-                                                           aria-describedby="basic-addon1">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                               <span style="padding-left:150px"></span>
-                                                <div class="col-md-4 mb-3" align="left">
-                                                    <label for="validationDefault01">จำนวนเล่ม</label>
-                                                    <input type="text" class="form-control" value="<?php echo "$rs[b_num]";?>" name="b_num" id="b_num"
-                                                           placeholder="กรุณาใส่จำนวนเล่ม"  aria-describedby="basic-addon1">
-                                                </div>
+                                               
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อหมวดหมู่</label>
@@ -125,14 +105,54 @@ $rs = mysql_fetch_array($result);
                                                         ?>
                                                     </select>
                                                 </div>
+                                                 <span style="padding-left:150px"></span>
+                                                <div class="col-md-4 mb-3" align="left">
+                                                    <label for="validationDefault02">ราคา</label>
+                                                    <input type="text" class="form-control" value="<?php echo "$rs[b_price]";?>" name="b_price" id="b_price" placeholder="กรุณาใส่ราคา"
+                                                           aria-describedby="basic-addon1">
+                                                </div>
+
+
+                                            </div>
+                                            <div class="form-row">
+                                               <!-- <span style="padding-left:150px"></span>
+                                                <div class="col-md-4 mb-3" align="left">
+                                                    <label for="validationDefault01">จำนวนเล่ม</label>
+                                                    <input type="text" class="form-control" value="<?php echo "$rs[b_num]";?>" name="b_num" id="b_num"
+                                                           placeholder="กรุณาใส่จำนวนเล่ม"  aria-describedby="basic-addon1">
+                                                </div> -->
+                                                
                                                 <!-- <span style="padding-left:150px"></span> -->
                                                 <!-- <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">วันที่รับล่าสุด</label>
                                                     <input style="size: revert" type="date" class="form-control" id="b_date" name="b_date" placeholder=" select" value="<?php echo "$rs[b_date]";?>">
                                                 </div> -->
+                                                <span style="padding-left:150px"></span>
+                                                <div class="col-md-4 mb-0 " align="left">
+                                                    <label for="validationDefault01">สำนักพิมพ์</label>
+                                                    <div style="width: -moz-fit-content" >
+                                                        <textarea class="form-control" id="b_place"name="b_place" placeholder="กรุณาใส่สำนักพิมพ์" rows="3"><?php echo "$rs[b_place]";?></textarea>
+                                                    </div>
+                                                </div>
+                                                <span style="padding-left:150px"></span>
+                                                <div class="col-md-2 mb-0" align="left">
+                                                    <label for="validationDefault01">รูปภาพ</label>
+                                                    <td align="center">
+                                                        <?php
+
+                                                        if("$rs[b_pic]" !=""){
+                                                            ?>
+
+                                                            <img src="<?php echo"./picture/$rs[b_pic]";?>" width="100%" height="55%">
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <input style="margin-top: 20px" type="file" class="custom-file" name="photo" id="photo" >
+                                                </div>
                                                 
                                             </div>
-                                            <div class="form-row">
+
+                                            <!-- <div class="form-row">
                                                 
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-2 mb-0" align="left">
@@ -149,7 +169,7 @@ $rs = mysql_fetch_array($result);
                                                         ?>
                                                         <input style="margin-top: 20px" type="file" class="custom-file" name="photo" id="photo" >
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             
                                                 <tr align="center" >
                                                     <td colspan="2" align="center">

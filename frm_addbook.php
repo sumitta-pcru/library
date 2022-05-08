@@ -89,22 +89,13 @@ include 'check.php';
                                                     <input type="text" class="form-control"  name="b_price" id="b_price" placeholder="กรุณาใส่ราคา"
                                                            aria-describedby="basic-addon1">
                                                 </div>
-                                                <span style="padding-left:150px"></span>
+                                                <!-- <span style="padding-left:150px"></span>
                                                     <div class="col-md-4 mb-3" align="left">
                                                         <label for="validationDefault01">จำนวนเล่ม</label>
                                                         <input type="text" class="form-control"  name="b_num" id="b_num"
                                                                placeholder="กรุณาใส่จำนวนเล่ม"  aria-describedby="basic-addon1">
-                                                    </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <span style="padding-left:150px"></span>
-                                                <div class="col-md-4 mb-3" align="left">
-                                                    <label for="validationDefault01">สำนักพิมพ์</label>
-                                                    <div style="width: -moz-fit-content" >
-                                                        <textarea class="form-control" id="b_place"name="b_place" placeholder="กรุณาใส่สำนักพิมพ์" rows="3"></textarea>
-                                                    </div>
-                                                </div>
-                                                <span style="padding-left:150px"></span>
+                                                    </div> -->
+                                                    <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">หมวดหมู่</label>
                                                     <select class="custom-select" name="bc_id" id="bc_id" >
@@ -119,6 +110,20 @@ include 'check.php';
                                                 </div>    
                                             </div>
                                             <div class="form-row">
+                                                <span style="padding-left:150px"></span>
+                                                <div class="col-md-4 mb-3" align="left">
+                                                    <label for="validationDefault01">สำนักพิมพ์</label>
+                                                    <div style="width: -moz-fit-content" >
+                                                        <textarea class="form-control" id="b_place"name="b_place" placeholder="กรุณาใส่สำนักพิมพ์" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                                <span style="padding-left:150px"></span>
+                                                <div class="col-md-4 mb-3" align="left">
+                                                    <label for="validationDefault01">รูปภาพ</label>
+                                                    <input type="file" class="custom-file" name="photo" id="photo" >
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
                                                 <!-- <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault02">วันที่รับล่าสุด</label>
@@ -127,11 +132,7 @@ include 'check.php';
                                                            onfocus="(this.type='date')"
                                                            onfocusout="(this.type='date')" max=<?php echo date('Y-m-d'); ?>>
                                                 </div> -->
-                                                <span style="padding-left:150px"></span>
-                                                <div class="col-md-4 mb-3" align="left">
-                                                    <label for="validationDefault01">รูปภาพ</label>
-                                                    <input type="file" class="custom-file" name="photo" id="photo" >
-                                                </div>
+                                                
                                             </div>
                                           
                                             <br>
