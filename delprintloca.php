@@ -13,21 +13,22 @@
 include "connect.php";
 include "script.php";
 include "alert.php";
-$ut_id = $_POST['ut_id'];
-$sql1 = "SELECT COUNT(m.ut_id) FROM member m inner join  usertype ut on m.ut_id = ut.ut_id where m.ut_id = '$ut_id'";
+$lo_id = $_POST['lo_id'];
+$sql1 = "SELECT COUNT(b.lo_id) FROM printlocation p inner join  book b on b.lo_id = p.lo_id where b.lo_id = '$lo_id'";
 $result2 = mysql_query($sql1,$conn);
 $record2=mysql_fetch_array($result2);
 $holding=$record2[0];
- //echo $holding;
+ echo $holding;
+
 if($holding>0){
-    echo success_h3("ไม่สามรถลบข้อมูลได้","showusertype.php");
-}else if($holding<0)
+    echo success_h3("ไม่สามรถลบข้อมูลได้","showprintloca.php");
+}else 
     {
-    $sql = "DELETE FROM usertype WHERE ut_id = '$ut_id'";
+    $sql = "DELETE FROM printlocation WHERE lo_id = '$lo_id'";
     mysql_query($sql,$conn)
 	    or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 
-    echo success_h3("ลบข้อมูลเรียบร้อยแล้ว","showusertype.php");
+    echo success_h3("ลบข้อมูลเรียบร้อยแล้ว","showprintloca.php");
 }
 mysql_close();
 

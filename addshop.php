@@ -22,12 +22,23 @@
 	$result1 = mysql_query($sqllending,$conn);
 	$record1=mysql_fetch_array($result1);
 	$lending=$record1[0];
- 	// echo $lending;
 
-	 $sqlholding="SELECT COUNT(bw.m_id) FROM borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  WHERE bw.m_id='$m_id' AND bd.bd_status='1'  ";
-	 $result2 = mysql_query($sqlholding,$conn);
-	 $record2=mysql_fetch_array($result2);
-	 $holding=$record2[0];
+ 	// echo $lending;
+// $i = 0; 
+//  $sql  = "SELECT * FROM borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  WHERE  bd.bd_status='1' ";
+//  $query = mysql_query($sql,$conn);
+//  while($rs =mysql_fetch_object($query)){
+// 	 $m_id[$i] = $rs->m_id;
+// 	 $sql  = "SELECT COUNT(bw.m_id) FROM borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  WHERE bw.m_id = $m_id[$i] and bd.bd_status='1' ";
+// 	 $query = mysql_query($sql,$conn);
+
+// 	$i++;
+//  }
+
+// 	 $sqlholding="SELECT COUNT(bw.m_id) FROM borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  WHERE bw.m_id='$m_id' AND bd.bd_status='1'  ";
+// 	 $result2 = mysql_query($sqlholding,$conn);
+// 	 $record2=mysql_fetch_array($result2);
+// 	 $holding=$record2[0];
 
 if($lending>=1){
 
@@ -45,19 +56,19 @@ if($lending>=1){
 			// echo "2";
 			//$_SESSION['shopping_cart']=[];
 			$_SESSION['shopping_cart'][$bl_id] = $bl_id;
-			// header("location:frm_addborrowing.php");
+			 header("location:frm_addborrowing.php");
 		}else {
 			// echo "3";
 			$i = 0;
             foreach ($_SESSION['shopping_cart'] as $x) {
-				$chk = $holding +$i;
+				
 				$i++;
 			}
 			// echo $i;
-			if ($i < 2 && $chk <5 ) {
+			if ($i < 5 ) {
 				$_SESSION['shopping_cart'][$bl_id] = $bl_id;
-				// header("location:frm_addborrowing.php");
-				//echo $_SESSION['shopping_cart'][$bl_id] = $bl_id;
+				header("location:frm_addborrowing.php");
+				echo $_SESSION['shopping_cart'][$bl_id] = $bl_id;
 			}
 			else {
 				// echo "11";

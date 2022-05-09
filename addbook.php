@@ -18,7 +18,7 @@
 	$b_name = $_POST['b_name'];
 	$b_author = $_POST['b_author'];
 	$b_year = $_POST['b_year'];
-	$b_place = $_POST['b_place'];
+	$lo_id= $_POST['lo_id'];
     $b_num = '0';
     $b_price = $_POST['b_price'];
     // $b_date = $_POST['b_date'];
@@ -28,7 +28,7 @@
     $fileupload = $_FILES['photo']['tmp_name'];
     $fileupload_name = uniqid().$_FILES['photo']['name'];
 
-	if ($b_id && $b_name && $b_author && $b_year && $b_place && $b_num && $b_price  ) {
+	if ($b_id && $b_name  ) {
 
 		$sql = "SELECT * FROM book WHERE b_id ='$b_id ' or b_name = '$b_name'   ";
 		$result = mysql_query($sql,$conn);
@@ -41,9 +41,9 @@
 					mkdir("./picture");
 				}
                 copy($fileupload,"./picture/".$fileupload_name);
-				$sql = "INSERT INTO book (b_id,b_name,b_author,b_year,b_place,b_price,b_num,b_pic,bc_id) VALUES ('$b_id','$b_name','$b_author','$b_year','$b_place','$b_price','$b_num','$fileupload_name','$bc_id')";
+				$sql = "INSERT INTO book (b_id,b_name,b_author,b_year,lo_id,b_price,b_num,b_pic,bc_id) VALUES ('$b_id','$b_name','$b_author','$b_year','$lo_id','$b_price','$b_num','$fileupload_name','$bc_id')";
 			} else {
-				$sql = "INSERT INTO book (b_id,b_name,b_author,b_year,b_place,b_price,b_num,bc_id) VALUES ('$b_id','$b_name','$b_author','$b_year','$b_place','$b_price','$b_num','$bc_id')";
+				$sql = "INSERT INTO book (b_id,b_name,b_author,b_year,lo_id,b_price,b_num,bc_id) VALUES ('$b_id','$b_name','$b_author','$b_year','$lo_id','$b_price','$b_num','$bc_id')";
 			}
 			mysql_query($sql,$conn)
 				or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();

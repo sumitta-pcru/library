@@ -1,8 +1,10 @@
+<meta charset="utf-8">
 <?php
 include 'connect.php';
 include 'script.php';
 
-
+sendlinemesg();
+        header('Content-Type: text/html; charset=utf8');
 function datethai($strDate){
 	$strYear = date("Y",strtotime($strDate))+543;
 	$strMonth= date("n",strtotime($strDate));
@@ -11,6 +13,7 @@ function datethai($strDate){
 	$strMonthThai=$strMonthCut[$strMonth];
 	return "$strDay $strMonthThai $strYear";
 }
+
 
 $datenow = date_create(date('Y-m-d'));
 
@@ -21,63 +24,55 @@ $sql = "select *
         inner join bookcategory bc on bc.bc_id = b.bc_id    
         inner join member m on m.m_id = bw.m_id  where bd.bd_status='1' ";
 $result1 = mysql_query($sql,$conn);
+
 $i=0;
-while ($row = mysql_fetch_array($result1)) {
-    $bd_id[$i] = $row['bd_id'];
-    $bw_returndate[$i] = date_create($row['bw_returndate']);
-    $datediff[$i]=date_diff($datenow,$bw_returndate[$i]);
-    $diff[$i] = $datediff[$i]->format('%a');
- 
-    $sql1 = "select *
-                FROM  borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  
-                inner join booklist bl on bd.bl_id = bl.bl_id
-                inner join book b on b.b_id = bl.b_id
-                inner join bookcategory bc on bc.bc_id = b.bc_id    
-                inner join member m on m.m_id = bw.m_id where bd.bd_id='".$bd_id[$i]."' and  bd.bd_status='1' ";
-                $result2 = mysql_query($sql1,$conn)
-                or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
-                    // while ($rs = mysql_fetch_array($result2)){
-                $rs = mysql_fetch_array($result2);
+ $text = '';
+
+            
+          
+// if($result1){
+    $header = 'แจ้งกำหนดคืนหนังสือ🔔';
+    $text  .= $header."\n";
+    $check = 0;
+        while ($row = mysql_fetch_array($result1)) {
+        
+                    
+            $bd_id[$i] = $row['bd_id'];
+            $bw_returndate[$i] = date_create($row['bw_returndate']);
+            $datediff[$i]=date_diff($datenow,$bw_returndate[$i]);
+            $diff[$i] = $datediff[$i]->format('%a');
+            $bw_returndate1[$i] =datethai($row['bw_returndate']);
+        
 
 
-            if($diff[$i]==2){
-               
-                //post ข้อมูลมาเก็บไว้ที่ตัวแปร
-                $fullname =$rs["m_name"];
-                $bw_date =datethai($rs["bw_date"]);
-                $bw_returndatee =datethai($rs["bw_returndate"]);
-                $b_name =$rs["b_name"];
-
-                    ///ส่วนที่ 1 line แจ้งเตือน จัดเรียงข้อความที่จะส่งเข้า line ไว้ในตัวแปร $message
-                    $header = 'แจ้งกำหนดคืนหนังสือ🔔';
-                    $message =
-                        $header .
+                        // exit();
                         
-                        "\n" .
-                        'ชื่อ: ' .
-                        $fullname .
-                        "\n" .
+                    if($diff[$i]==2){
                     
-                        'ต้องคืนหนังสือภายในวันที่: ' .
-                        $bw_returndatee .
-                    
-                        "\n" .
-                        'ชื่อหนังสือ: ' .
-                        $b_name .
-                        "\n";
-                    
-                    
-                // }
-                     
-            }
-            $i++;     
-    }
+                        $text  .= "ชื่อ : ".$row["m_name"]."\n";
+                        $text  .= "ชื่อหนังสือ : ".$row["b_name"]."\n";
+                        $text  .= "ต้องคืนหนังสือภายในวันที่ : ".$bw_returndate1[$i]."\n";
+                        $text  .= "\n";
+                        $check++;
+                    }
+            $i++; 
+            
+            }   
+if($check>0){
+    notify_message($text);
+}
+             
+    
+        
+    
+   
+        // }
+       
     
 
- ///ส่วนที่ 2 line แจ้งเตือน  ส่วนนี้จะทำการเรียกใช้ function sendlinemesg() เพื่อทำการส่งข้อมูลไปที่ line
- sendlinemesg();
- header('Content-Type: text/html; charset=utf8');
- $res = notify_message($message);
+      ///ส่วนที่ 2 line แจ้งเตือน  ส่วนนี้จะทำการเรียกใช้ function sendlinemesg() เพื่อทำการส่งข้อมูลไปที่ line
+        
+        // $res = notify_message($text);
     
     ///ส่วนที่ 3 line แจ้งเตือน
     function sendlinemesg()
@@ -104,6 +99,6 @@ while ($row = mysql_fetch_array($result1)) {
             return $res;
         }
     }
-       
+  
 
 ?>

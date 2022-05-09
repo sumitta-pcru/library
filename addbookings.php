@@ -29,35 +29,55 @@ if(empty($_SESSION['cart'] )){
     echo error_h3("กรุณาเลือกรายการหนังสือ");
     return;
 }else{
+    $i = 0;
     foreach($_SESSION['cart'] as $bl_id){
         $sql5 = "select * from book b join bookcategory bc on  b.bc_id = bc.bc_id 
                             inner join booklist bl on bl.b_id = b.b_id where bl_id='".$_SESSION['cart'][$bl_id]."'";
         $result5 = mysql_query($sql5,$conn);
-        $row5 = mysql_fetch_array($result5);              
+        $row5 = mysql_fetch_array($result5); 
+        $i++;             
         }
-    }
-        // $sqllending="SELECT COUNT(bt.bl_id) FROM bookingsdetails bt  WHERE bt.bl_id='$bl_id'  AND bt.bk_status='0' ";
-        // $result1 = mysql_query($sqllending,$conn);
-        // $record1=mysql_fetch_array($result1);
-        // $lending=$record1[0];
-
-        $sqlholding="SELECT COUNT(bk.m_id) FROM bookings bk inner join bookingsdetails bt  on bk.bk_id = bt.bk_id  WHERE bk.m_id='$valid_uname' AND bt.dk_status='0' ";
+   $sqlholding="SELECT COUNT(bk.m_id) as num FROM bookings bk inner join bookingsdetails bt  on bk.bk_id = bt.bk_id  WHERE bk.m_id='$valid_uname' AND bt.dk_status='0' ";
         $result2 = mysql_query($sqlholding,$conn);
         $record2=mysql_fetch_array($result2);
         $holding=$record2[0];
-        
+        $chk = $i+ $record2['num'];
+//echo $chk;
+    }
+        if($chk>=6){
+            echo   "<script>
+            Swal.fire({
+               icon: 'info',
+               title: 'หนังสือเกินที่กำหนด ',
+               text: 'จำนวน $holding เล่ม',
+               // showCancelButton: true,
+               showConfirmButton: true,
+               confirmButtonColor: '#3085d6',
+               // cancelButtonColor: '#d33',
+               confirmButtonText: 'ตกลง'
+           }).then((result) => {
+               window.location = 'frm_addbookings.php';
+            })
+          </script>";
+          return;
+        }else if($holding>=5){
 
-        // if($lending>1){
-        // echo success_h3("หนังสือเล่มนี้ถูกจองไปแล้ว","frm_addbookings.php");
-        // }else
+            echo   "<script>
+         Swal.fire({
+            icon: 'info',
+            title: 'ยืมหนังสือเกินที่กำหนด ',
+            text: 'จำนวน $holding เล่ม',
+            // showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonColor: '#3085d6',
+            // cancelButtonColor: '#d33',
+            confirmButtonText: 'ตกลง'
+        }).then((result) => {
+            window.location = 'frm_addbookings.php';
+         })
+       </script>";
+       return;
 
-        if($holding>=5){
-            echo $holding;
-            echo success_h3("หนังสือเกินที่กำหนด","frm_addbookings.php");
-            // echo"<script language=\"javascript\">";
-            // echo"alert('หนังสือเกินที่กำหนด');";
-            // echo"window.location = 'frm_addbookings.php';";
-            // echo"</script>";
         }else{
                 
                     foreach($_SESSION['cart'] as $bl_id);

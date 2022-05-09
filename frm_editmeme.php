@@ -21,12 +21,12 @@ $datenow = date_create(date('Y-m-d'));
 		$diff[$i] = $datediff[$i]->format('%a');
 		// echo $row['bk_status'];
 		// echo  	$diff[$i] ;
-		if($diff[$i]>2){
+		if($diff[$i]>=2){
 			// $sql = "DELETE FROM bookings WHERE m_id = '$valid_uname'";
 			// mysql_query($sql,$conn)
 			// 	or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 			
-			$sql2 = "UPDATE bookingsdetails SET dk_status = 1 WHERE dk_id = '$dk_id[$i] '";
+			$sql2 = "UPDATE bookingsdetails SET dk_status = 2 WHERE dk_id = '$dk_id[$i] '";
 			mysql_query($sql2,$conn)
 				or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 		}

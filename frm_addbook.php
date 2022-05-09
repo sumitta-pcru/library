@@ -72,8 +72,15 @@ include 'check.php';
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อผู้แต่ง</label>
-                                                    <input type="text" class="form-control"  name="b_author" id="b_author" placeholder="กรุณาใส่ชื่อผู้แต่ง"
-                                                           aria-describedby="basic-addon1" onkeypress="not_number(event)">
+                                                    <select class="custom-select" name="a_id" id="a_id" >
+                                                        <?php
+                                                        $sql1 = "SELECT * from authorname ";
+                                                        $result1 = mysql_query($sql1,$conn);
+                                                        while ($rs1=mysql_fetch_array($result1)){
+                                                            echo "<option value = $rs1[a_id]>$rs1[a_name]</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
                                                 </div>
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
@@ -113,9 +120,15 @@ include 'check.php';
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">สำนักพิมพ์</label>
-                                                    <div style="width: -moz-fit-content" >
-                                                        <textarea class="form-control" id="b_place"name="b_place" placeholder="กรุณาใส่สำนักพิมพ์" rows="3"></textarea>
-                                                    </div>
+                                                    <select class="custom-select" name="lo_id" id="lo_id" >
+                                                        <?php 
+                                                        $sql1 = "SELECT * from printlocation ";
+                                                        $result1 = mysql_query($sql1,$conn);
+                                                        while ($rs1=mysql_fetch_array($result1)){
+                                                            echo "<option value = $rs1[lo_id]>$rs1[lo_name]</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
                                                 </div>
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">

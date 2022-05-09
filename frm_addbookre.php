@@ -1,9 +1,10 @@
 <?php
-
+include "connect.php";
 include 'script.php';
 include 'check.php';
 $valid_uname = $_SESSION['valid_uname'];
-
+$br_date = date('Y-m-d');
+// error_reporting(~E_NOTICE);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -145,6 +146,9 @@ $valid_uname = $_SESSION['valid_uname'];
                                                 <td>ที่</td>
                                                 <td align="center">รหัสรายการหนังสือ</td>
                                                 <td align="center">ชื่อหนังสือ</td>
+                                                <td align="center">วันที่ต้องคืน</td>
+                                                <td align="center">วันที่คืน</td>
+                                                <td align="center">ค่าปรับ</td>
                                                 <td align="center">ลบ</td>
                                             </tr>
                                         </thead>
@@ -153,19 +157,45 @@ $valid_uname = $_SESSION['valid_uname'];
                                             if (!empty($_SESSION['return'])) {
                                                 require_once('connect.php');
                                                 $i = 0;
-                                                
+                                                // inner join borrowingdetails bd on bd.bl_id = bl.bl_id 
+                                                //     inner join borrowing bw on bd.bw_id = bw.bw_idand bd.bd_status = '1'
                                                 foreach ($_SESSION['return'] as $bl_id) {
                                                     
                                                     $sql2 = "select * from book b join bookcategory bc on  b.bc_id = bc.bc_id 
-                                                    inner join booklist bl on bl.b_id = b.b_id where bl_id='". $_SESSION['return'][$bl_id] ."'";
+                                                    inner join booklist bl on bl.b_id = b.b_id 
+                                                      where bl.bl_id='". $_SESSION['return'][$bl_id] ."'  ";
                                                     $result2 = mysql_query($sql2, $conn);
                                                     $row2 = mysql_fetch_array($result2);
+
+                                                    $sql="select * FROM borrowing bw   inner join borrowingdetails bd on bd.bw_id = bw.bw_id 
+                                                    inner join member m  on bw.m_id = m.m_id
+                                                    inner join usertype ut on ut.ut_id = m.ut_id
+                                                    where bd.bl_id= '$bl_id' and bd.bd_status='1' ";
+                                                    $query= mysql_query($sql,$conn);
+                                                    $result=mysql_fetch_object($query);
+                                                    $sum = 0;
+                                                    $datenow = date_create(date('Y-m-d'));
+                                                    $bw_returndate = date_create($result->bw_returndate);
+                                                    $datediff = date_diff($datenow,$bw_returndate );
+                                                    $diff = $datediff->format('%a');
+                                                   
+
+
                                                     echo "<td>";
                                                     echo $i += 1;
                                                     echo ".";
                                                     echo "</td>";
                                                     echo "<td align='center'>" . $row2["bl_id"] . "</td>";
                                                     echo "<td align='center'>" . " " . $row2["b_name"] . "</td>";
+                                                    echo "<td align='center'>" . " " . $result->bw_returndate . "</td>";
+                                                    echo "<td align='center'>" . " " . $br_date . "</td>";
+                                                    if($br_date<=$result->bw_returndate){
+                                                        echo "<td align='center'>" . " " . $sum . "</td>";
+                                                    }else{
+                                                        $sum = $diff  * $result->ut_rate;
+                                                        echo "<td align='center'>" . " " . $sum . "</td>";
+                                                    }
+                                                    $_SESSION['sum'][$sum] = $sum;
                                                    
                                                     echo "<td align='center'><a  href='deletebookre.php?bl_id=$bl_id&act=remove'><i class='fas fa-trash-alt' style='color:#EC7063'></i></a></td>";
                                                     echo "</tr>";
@@ -173,7 +203,7 @@ $valid_uname = $_SESSION['valid_uname'];
                                            
                                              } ?>
                                             <tr>
-                                                <td colspan="5" align="right">
+                                                <td colspan="7" align="right">
                                                     <button class="btn btn-primary" type="submit" >บันทึก</button>
                                                     <button type="button" name="Submit2"
                                                         onclick="window.location='delbookre.php';" class="btn btn-danger">

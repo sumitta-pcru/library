@@ -79,7 +79,11 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                         <tbody>
 
                             <?php
+                           
                         while ($rs = mysql_fetch_object($result)) {
+                            //while ($rs = mysql_fetch_object($result)){
+                                
+                            
                             ?>
                             <tr>
                                 <td align="center"><?php echo"$rs->bk_id";?></td>
@@ -102,17 +106,28 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                         href="frm_editbookings.php?bk_id=<?php echo $rs->bk_id;?>">
                                         <i class="fas fa-pen"></i> แก้ไข
                                     </a> -->
-                                    <a class="btn btn-danger" href="frm_delbookings.php?dk_id=<?php echo $rs->dk_id;?>&amp;bl_id=<?php echo $rs->bl_id;?>"
+                                    <?php 
+                                    if($rs->dk_status!=2){ ?>
+                                        <a class="btn btn-danger" href="frm_delbookings.php?dk_id=<?php echo $rs->dk_id;?>&amp;bl_id=<?php echo $rs->bl_id;?>"
                                         style="color: white">
                                         <i class="fas fa-trash-alt"></i> ยกเลิก
 
                                     </a>
+                                    <?php } ?>
+                                    <?php if($rs->dk_status==2) {  ?>
+                                        <a class="btn btn-secondary "style="color: white">
+                                        <i class="fas fa-trash-alt"></i> ยกเลิก
+
+                                    </a>
+                                    
+                                    <?php }?>
                                 </td>
                             </tr>
 
 
                             <?php
                         }
+                    // }
                         ?>
                         </tbody>
                     </table>

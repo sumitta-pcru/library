@@ -73,7 +73,7 @@ else{
 				$i++;
 			}
 			// echo $i;
-			if ($i < 2 ) {
+			if ($i < 5 ) {
 				$_SESSION['cart'][$bl_id] = $bl_id;
 				
 			}else {

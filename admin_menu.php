@@ -64,6 +64,11 @@ include 'script.php';
                 <i class="fas fa-book-open"></i>
                 <span>หมวดหมู่หนังสือ</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="showprintloca.php">
+                <i class="fas fa-book-open"></i>
+                <span>สถานที่พิมพ์</span></a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="showbook.php">

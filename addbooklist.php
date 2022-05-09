@@ -77,7 +77,7 @@
                 $result4 = mysql_query($sqlup4 , $conn) or die ("Error in query: $sqlup4 " . mysql_error());
 
 
-                $sql2 = "INSERT INTO booklist (bl_id,bl_status,b_date,b_id,new) VALUES('$bl_id','$bl_status','$b_date','$b_id','$new_status1')"; 
+                $sql2 = "INSERT INTO booklist (bl_id,bl_status,b_date,b_id,new) VALUES('$bl_id','$bl_status','$b_date','$b_id','$new_status')"; 
                 $result2 = mysql_query($sql2, $conn) or die ("Error in query: $sql2 " . mysql_error());
                 echo success_h3("บันทึกข้อมูลเรียบร้อยเเล้ว", "showbook.php");
             }
