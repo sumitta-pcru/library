@@ -11,7 +11,7 @@ $sql = "select br.br_id,bi.rb_id,bw.bw_date,br.br_date,bi.rate,m.m_name , COUNT(
                 inner join borrowing bw on bw.bw_id = bd.bw_id 
                 inner join bill bll on bi.rb_id = bll.rb_id  
                 inner join booklist bl on bd.bl_id = bl.bl_id
-                inner join book b on b.b_id = bl.b_id   where bw.m_id = '$valid_uname' group by br.br_id ";
+                inner join book b on b.b_id = bl.b_id   where bw.m_id = '$valid_uname' and bi.rate NOT IN('0.00')   group by br.br_id  ";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 

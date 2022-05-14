@@ -59,15 +59,15 @@ if(empty($_SESSION['return'])){
             $sql="select * FROM borrowing bw   inner join borrowingdetails bd on bd.bw_id = bw.bw_id inner join member m  on bw.m_id = m.m_id where bd.bl_id= '$bl_id' and bd.bd_status='1' ";
             $query= mysql_query($sql,$conn);
             $result=mysql_fetch_object($query);
-
+        //   echo  $_SESSION['sum'] ;
                 // echo $result->bd_id;
                 // echo $result->bw_returndate;
                 // echo $br_date;
                 // echo $result->bw_date;
-                // echo $result->m_id; $result->bw_date<
+                // echo $result->m_id; $result->bw_date< && $_SESSION['sum']==0 
 
-                if($br_date<=$result->bw_returndate && $_SESSION['sum']==0 ){
-                
+                if($br_date<=$result->bw_returndate){
+                    // echo 'ice';
                     $i = 0;
                     $func ='ice';
                     $sql3 = "INSERT INTO bookreturndetails (br_id,rate,bd_id) VALUES('$br_id','$br_totalrate','$result->bd_id')";
@@ -78,19 +78,11 @@ if(empty($_SESSION['return'])){
                     $rb_id = mysql_insert_id();
                     $sql5 = "Update booklist set bl_status ='$bl_status' where bl_id = '$bl_id'";
                     $result2 = mysql_query($sql5, $conn) or die ("Error in query: $sql5 " . mysql_error());
-
-                    // if($query2 && $query3){
-                    //     foreach($_SESSION['return'] as $bl_id)
-                    //     {	
                             unset($_SESSION['return']);
-
-                    //     }
-                    // } 
-
-                }else{ 
+                }elseif($br_date>=$result->bw_returndate && $_SESSION['sum']!=0 ){
                     $i = 1;
                     $func ='ice2';
-
+                    echo 'ice2';
                     $sql2 ="select ut_rate from  member m inner join usertype ut on m.ut_id=ut.ut_id  where m.m_id ='$result->m_id' limit 1 ";
                     $query2= mysql_query($sql2,$conn);
                     $result2=mysql_fetch_object($query2);
@@ -100,11 +92,7 @@ if(empty($_SESSION['return'])){
                     $datediff = date_diff($datenow,$bw_returndate );
                     $diff = $datediff->format('%a');
                     $sum = $diff  * $result2->ut_rate;
-                    // echo $sum;
-                    // $sql1 = "INSERT INTO bookreturn (br_date,br_totalrate,m_id,mr_id) VALUES('$br_date','$rate','$m_id','$valid_uname')";
-                    // $query2 = mysql_query($sql1, $conn) or die ("Error in query: $sql1 " . mysql_error());
-
-                    // $br_id = mysql_insert_id();
+                
                     $sql3 = "INSERT INTO bookreturndetails (br_id,rate,bd_id) VALUES('$br_id','$sum','$result->bd_id')";
                     $query3 = mysql_query($sql3, $conn) or die ("Error in query: $sql3 " . mysql_error());
                     $rb_id = mysql_insert_id();
@@ -116,18 +104,8 @@ if(empty($_SESSION['return'])){
                     $rb_id   = mysql_insert_id();
                     $sql5 = "Update booklist set bl_status ='$bl_status'  where bl_id = '$bl_id'";
                     $result2 = mysql_query($sql5, $conn) or die ("Error in query: $sql5 " . mysql_error());
-                    // if($query2 && $query3){
-                    //     foreach($_SESSION['return'] as $bl_id)
-                    //     {	
                             unset($_SESSION['return']);
-
-                    //     }
-                        
-                    // } 
                 }
-            
-            
-        // }
     }
 }
 if($i==0  &&  $func ='ice'){
@@ -148,8 +126,8 @@ if($i==0  &&  $func ='ice'){
     
     </script>"; 
     unset($_SESSION['sum']);
-}
-elseif($i == 1  &&  $func ='ice2'){
+}else
+if($i == 1  &&  $func ='ice2'){
     echo  "<script>
     $(document).ready(function(){
         Swal.fire({

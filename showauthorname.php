@@ -1,22 +1,13 @@
 <?php
-include 'check.php';
-include 'connect.php';
 include 'script.php';
-
-$valid_uname = $_SESSION['valid_uname'];
-$sql = "select *
-            FROM bookreturn br inner join bookreturndetails rd on br.br_id = rd.br_id
-            inner join borrowingdetails bd on rd.bd_id = bd.bd_id 
-            inner join borrowing bw on bw.bw_id = bd.bw_id 
-            inner join booklist bl on bl.bl_id = bd.bl_id                
-            inner join book b on b.b_id = bl.b_id
-            inner join bill bi on rd.rb_id = bi.rb_id where rd.rate NOT IN('0.00') "; 
-            // group by br.br_id 
-
-$result = mysql_query($sql, $conn)
-or die("3. ไม่สามารถประมวลผลคำสั่งได้") . mysql_error();
+include 'connect.php';
+include 'check.php';
+$sql = "SELECT * FROM authorname";
+$result = mysql_query($sql,$conn)
+or die ("Can't Query").mysql_error();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,26 +39,32 @@ or die("3. ไม่สามารถประมวลผลคำสั่ง
 </head>
 
 <body id="page-top">
+
     <!-- Page Wrapper -->
     <div id="wrapper">
-<?php
-include 'staff_menu.php'
-?>
+
+        <?php
+        include 'admin_menu.php'
+        ?>
                 <div class="container-fluid">
+
+
                      <!-- Page Heading -->
+
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800" style="margin-top: 20px">รายงานค่าปรับ</h1>
+                        <h1 class="h3 mb-0 text-gray-800"  style="margin-top: 20px">ข้อมูลผู้แต่ง</h1>
                     </div>
 
+                    <div class="mb-5" style="text-align: left">
+				    <a  class="btn btn-success" href="frm_addauthorname.php">
+                        <i class="fas fa-plus-circle"></i> เพิ่มข้อมูลผู้แต่ง
+                    </a>
+                	</div>
                     <!-- Content Row -->
+
                 </div>
                 <!-- /.container-fluid -->
 				  <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                   
-                  
-
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <!-- <div class="card-header py-3">
@@ -77,36 +74,37 @@ include 'staff_menu.php'
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
-                                            <td width="15%" align="center">รหัสการคืน</td>
-                                            <td width="35%" align="center">ชื่อหนังสือ</td>
-                                            <td width="15%" align="center">ค่าปรับ</td>
-                                            <td width="20%" align="center">วันที่เสียค่าปรับ</td>
-                                            <td width="20%">&nbsp;</td>
-
+                                        <tr>      
+                             				<td width="85" align="center">รหัสผู้แต่ง</td>
+                            				<td width="85" align="center">ชื่อผู้แต่ง</td>
+							 				<td width="10" align="center"></td>
                                         </tr>
                                     </thead>
-
                                     <tbody>
 
                                     <?php
                                     while ($rs = mysql_fetch_object($result)) {
+                                        ?>
+                                        <tr>
+                                            <td align="center"><?php echo"$rs->a_id";?></td>
+                                            <td align="center"><?php echo"$rs->a_name";?></td>
+
+                                            <td align="center">
+                                                <a class="btn btn-warning"  href="frm_editauthorname.php?id=<?php echo $rs->id;?>">
+                                                    <i class="fas fa-pen"></i> แก้ไข
+                                                </a>
+                                                <a class="btn btn-danger"  href="frm_delauthorname.php?id=<?php echo $rs->id;?>">
+                                                    <i class="fas fa-trash-alt"></i> ลบ
+                                                </a>
+                                            </td>
+                                        </tr>
+
+
+                                        <?php
+                                    }
                                     ?>
-                                    <tr>
-                                        <td align="center"><?php echo"$rs->rb_id";?></td>
-                                        <td align="center"><?php echo"$rs->b_name";?></td>
-                                        <td align="center"><?php echo"$rs->rate	";?></td>
-                                        <td align="center"><?php echo"$rs->br_date";?></td>
-                                        <td align="center">                   
-                                            <a class="btn btn-secondary"  href="staffprintbill1.php?rb_id=<?php echo $rs->rb_id;?>">
-                                                <i class="fas fa-print"></i> พิมพ์ใบเสร็จ
-                                            </a>
-                                        </td>
-                                    </tr>
-                                        <?php } ?>
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -131,7 +129,7 @@ include 'staff_menu.php'
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                   <h5 class="modal-title" id="exampleModalLabel">ยันยืนการออกจากระบบ</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">ยันยืนการออกจากระบบ</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -171,7 +169,6 @@ include 'staff_menu.php'
     <!-- Page level custom scripts -->
     <!-- <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script> -->
-
 
 
 </body>

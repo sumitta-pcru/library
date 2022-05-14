@@ -64,7 +64,7 @@ mysql_close();
                             <form id="form1" name="form1"  method="post" action="searchrebook.php">
                                 <div class="form-group row">
                                     <div class="input-group mr-2">
-                                        <input name="search" type="text" id="search"  class="form-control d-block" placeholder="ค้นหาหนังสือ">&nbsp;&nbsp;
+                                        <input name="search" type="text" id="search"  class="form-control d-block" placeholder="ค้นหาชื่อหนังสือ">&nbsp;&nbsp;
                                         <input type="submit"  value="ค้นหา" class="btn btn-primary  d-block">
                                                     
                                     </div>
@@ -114,7 +114,8 @@ mysql_close();
                                     <?php
                                         $sql = "select *
                                             FROM book b join bookcategory bc on  b.bc_id = bc.bc_id 
-                                            inner join booklist bl on bl.b_id = b.b_id where bl.bl_status = '0' ";
+                                            inner join booklist bl on bl.b_id = b.b_id
+                                            where bl.bl_status = '0' ";
                                         $result = mysql_query($sql,$conn);
                                     ?>
                                     <div class="row row-cols-1 row-cols-md-4 g-4">

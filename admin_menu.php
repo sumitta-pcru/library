@@ -69,7 +69,11 @@ include 'script.php';
                 <i class="fas fa-book-open"></i>
                 <span>สถานที่พิมพ์</span></a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="showauthorname.php">
+            <i class="fas fa-user-edit"></i>
+                <span>ผู้แต่ง</span></a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="showbook.php">
                 <i class="fas fa-book"></i>

@@ -3,7 +3,7 @@ include 'connect.php';
 include 'script.php';
 include 'check.php';
 $sql = "select *
-            FROM book b join bookcategory bc on  b.bc_id = bc.bc_id ";
+            FROM book b join bookcategory bc on  b.bc_id = bc.bc_id inner join printlocation pl on pl.lo_id = b.lo_id  inner join authorname a on a.a_id = b.a_id";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 ?>
@@ -107,9 +107,9 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                         <td align="center"><?php echo"$rs1->b_id";?></td>
                                         
                                         <td align="center"><?php echo"$rs1->b_name";?></td>
-                                        <td align="center"><?php echo"$rs1->b_author";?></td>
+                                        <td align="center"><?php echo"$rs1->a_name";?></td>
                                         <td align="center"><?php echo"$rs1->b_year";?></td>
-                                        <td align="center"><?php echo"$rs1->b_place";?></td>
+                                        <td align="center"><?php echo"$rs1->lo_name";?></td>
                                         <td align="center"><?php echo"$rs1->b_price";?></td>
                                         <td align="center"><?php echo"$rs1->b_num";?></td>
                                         

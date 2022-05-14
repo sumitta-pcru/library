@@ -39,15 +39,16 @@ include 'script.php';
         $holding3=$record3[0];
         
         
-if($lending>=1){
-    //   
-            echo"<script language=\"javascript\">";
-            echo"alert('หนังสือเล่มนี้ถูกจองแล้ว');";
-            echo"window.location = 'frm_addbooking.php';";
-            echo"</script>";
+// if($lending>=1){
+//     //   
+//             echo"<script language=\"javascript\">";
+//             echo"alert('หนังสือเล่มนี้ถูกจองแล้ว');";
+//             echo"window.location = 'frm_addbooking.php';";
+//             echo"</script>";
             
-}
-elseif($holding3>=10){
+// }
+// else
+if($holding3>=10){
     //   
             echo"<script language=\"javascript\">";
             echo"alert('คุณไม่สามารถจองหนังสือได้');";

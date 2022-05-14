@@ -172,15 +172,15 @@ mysql_close();
                                         </div>
 
                                     </div>
-                                    <!-- <div class="form-group row">
+                                    <div class="form-group row">
 
-                                        <label for="colFormLabel" class="col-sm-1 col-form-label">รหัสผ่าน</label>
+                                        <label for="colFormLabel" class="col-sm-2 col-form-label">รหัสผ่าน</label>
                                         <div class="col">
                                             <input value="<?php echo "$rs[m_pass]"; ?>" name="m_pass" type="text" class="form-control"
                                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                                         </div>
 
-                                    </div> -->
+                                    </div>
                                     <br>
 
                                     <div align="center">

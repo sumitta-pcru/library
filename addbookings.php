@@ -49,7 +49,7 @@ if(empty($_SESSION['cart'] )){
             Swal.fire({
                icon: 'info',
                title: 'หนังสือเกินที่กำหนด ',
-               text: 'จำนวน $holding เล่ม',
+               text: 'จองไปแล้ว $holding เล่ม จองได้ทั้งหมดแค่ 5 เล่ม ',
                // showCancelButton: true,
                showConfirmButton: true,
                confirmButtonColor: '#3085d6',
@@ -97,6 +97,9 @@ if(empty($_SESSION['cart'] )){
                                     $row1 = mysql_fetch_array($result1);    
                                         $sql2 = "INSERT INTO bookingsdetails (bk_id,bl_id,dk_status) VALUES('$bk_id','$bl_id','$bk_status')";
                                         $result2 = mysql_query($sql2, $conn) or die ("Error in query: $sql2 " . mysql_error());
+
+                                        $sql4 = "Update booklist Set bl_status='4' Where bl_id='$bl_id'";
+                                        $result4 = mysql_query($sql4, $conn) or die ("Error in query: $sql4 " . mysql_error());
                                     }
                                     if($result && $result2){
                                         

@@ -19,7 +19,7 @@ $sql = "select *
             inner join borrowing bw on bw.bw_id = bd.bw_id 
             inner join booklist bl on bl.bl_id = bd.bl_id                
             inner join book b on b.b_id = bl.b_id
-            inner join bill bi on rd.rb_id = bi.rb_id where br.br_date = '$date' or br.br_date = '$d_s' ";
+            inner join bill bi on rd.rb_id = bi.rb_id where  br.br_date = '$date' or br.br_date = '$d_s'  ";
 
 
 
@@ -153,7 +153,7 @@ or die("3. ไม่สามารถประมวลผลคำสั่ง
                                         <td align="center"><?php echo"$rs->rate	";?></td>
                                         <td align="center"><?php echo"$rs->br_date";?></td>
                                         <td align="center">                   
-                                            <a class="btn btn-secondary"  href="staffprintbill.php?rb_id=<?php echo $rs->rb_id;?>">
+                                            <a class="btn btn-secondary"  href="staffprintbill1.php?rb_id=<?php echo $rs->rb_id;?>">
                                                 <i class="fas fa-print"></i> พิมพ์ใบเสร็จ
                                             </a>
                                         </td>

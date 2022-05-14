@@ -11,29 +11,29 @@
 include "connect.php";
 include "script.php";
 include "alert.php";
-$lo_id = $_POST['lo_id'];
-$lo_name = $_POST['lo_name'];
+$id = $_POST['id'];
+$a_id = $_POST['a_id'];
+$a_name = $_POST['a_name'];
 
 // check bank text
-if($lo_name){
-    // check diplicate priamry key
-    $sql = "SELECT * FROM printlocation WHERE lo_name = '$lo_name' AND lo_id != '$lo_id'";
+if($a_id  && $a_name ){
+	$sql = "SELECT * FROM authorname WHERE  a_id='$a_id' and a_name='$a_name'";
     $total = mysql_query($sql,$conn);
 
     if(mysql_num_rows($total) == 0){
-        $sql = "UPDATE printlocation SET lo_name = '$lo_name' WHERE lo_id = '$lo_id'";
+        $sql = "UPDATE authorname SET a_id = '$a_id', a_name = '$a_name' WHERE id = '$id'";
         mysql_query($sql,$conn)
         or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
     }else{
-        echo error_h3("ชื่อสถานที่พิมพ์ซ้ำ","showprintloca.php");
+        echo error_h3("ชื่อสถานที่พิมพ์ซ้ำ","showauthorname.php");
         return;
     }
 }else{
-    echo error_h3("กรุณาป้อนชื่อสถานที่พิมพ์","showprintloca.php");
+    echo error_h3("กรุณาป้อนชื่อสถานที่พิมพ์","showauthorname.php");
     return;
 }
 mysql_close();
-echo success_h3("แก้ไขข้อมูลเรียบร้อยแล้ว","showprintloca.php");
+echo success_h3("แก้ไขข้อมูลเรียบร้อยแล้ว","showauthorname.php");
 ?>
 </body>
 </html>

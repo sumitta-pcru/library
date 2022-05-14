@@ -19,6 +19,7 @@
 	$b_author = $_POST['b_author'];
 	$b_year = $_POST['b_year'];
 	$lo_id= $_POST['lo_id'];
+	$a_id= $_POST['a_id'];
     $b_num = '0';
     $b_price = $_POST['b_price'];
     // $b_date = $_POST['b_date'];
@@ -41,9 +42,9 @@
 					mkdir("./picture");
 				}
                 copy($fileupload,"./picture/".$fileupload_name);
-				$sql = "INSERT INTO book (b_id,b_name,b_author,b_year,lo_id,b_price,b_num,b_pic,bc_id) VALUES ('$b_id','$b_name','$b_author','$b_year','$lo_id','$b_price','$b_num','$fileupload_name','$bc_id')";
+				$sql = "INSERT INTO book (b_id,b_name,a_id,b_year,lo_id,b_price,b_num,b_pic,bc_id) VALUES ('$b_id','$b_name','$a_id','$b_year','$lo_id','$b_price','$b_num','$fileupload_name','$bc_id')";
 			} else {
-				$sql = "INSERT INTO book (b_id,b_name,b_author,b_year,lo_id,b_price,b_num,bc_id) VALUES ('$b_id','$b_name','$b_author','$b_year','$lo_id','$b_price','$b_num','$bc_id')";
+				$sql = "INSERT INTO book (b_id,b_name,a_id,b_year,lo_id,b_price,b_num,bc_id) VALUES ('$b_id','$b_name','$a_id','$b_year','$lo_id','$b_price','$b_num','$bc_id')";
 			}
 			mysql_query($sql,$conn)
 				or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
