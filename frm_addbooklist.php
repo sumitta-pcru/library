@@ -3,10 +3,22 @@ include 'connect.php';
 include "script.php";
 include 'check.php';
 $b_id = $_GET['b_id'];
-$sql = "SELECT * FROM book  where  b_id = '$b_id'";
+$sql = "SELECT b.b_id,b.b_name,bl.bl_id FROM book b inner join booklist bl on  b.b_id = bl.b_id  where  b.b_id = '$b_id' ORDER BY bl.bl_id DESC LIMIT 1 ";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 $rs = mysql_fetch_array($result);
+$id = $rs['bl_id'];
+$b_id = $rs['b_id'];
+
+$id_list = substr($id,-2)+1;
+
+if($id_list<=9){
+    $a = ".0".$id_list;
+}else{
+    $a = ".".$id_list;
+}
+$bl_id = $b_id.$a;
+// echo $bl_id;
 ?>
 
 
@@ -82,10 +94,11 @@ $rs = mysql_fetch_array($result);
                                                     <label for="validationDefault01">รหัสรายการ</label>
                                                     <input type="text" class="form-control"
                                                            name="bl_id" id="bl_id" placeholder="กรุณาใส่รหัสรายการ"
-                                                           aria-describedby="basic-addon1">
+                                                           value="<?php echo $bl_id;?>"
+                                                                aria-describedby="basic-addon1" readonly>
                                                 </div>
                                             </div>
-                                            <div class="form-row">
+                                            <!-- <div class="form-row">
                                             <span style="padding-left:370px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault02">วันที่รับล่าสุด</label>
@@ -94,7 +107,7 @@ $rs = mysql_fetch_array($result);
                                                            onfocus="(this.type='date')"
                                                            onfocusout="(this.type='date')" max=<?php echo date('Y-m-d'); ?>>
                                                 </div>
-                                            </div>    
+                                            </div>     -->
                                             <!-- <div class="form-row">
                                             <span style="padding-left:370px"></span>
                                                 <div class="col-md-4 mb-3" align="left">

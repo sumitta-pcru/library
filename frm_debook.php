@@ -3,7 +3,9 @@ include 'connect.php';
 include "script.php";
 include 'check.php';
 $b_id = $_GET['b_id'];
-$sql = "SELECT * FROM book b,bookcategory bc   where b.bc_id=bc.bc_id and b_id = '$b_id'";
+$sql = "SELECT * FROM book b inner join bookcategory bc  on  b.bc_id=bc.bc_id  
+                inner join authorname a on b.a_id = a.a_id 
+                inner join printlocation lo on b.lo_id = lo.lo_id where b_id = '$b_id'";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 $rs = mysql_fetch_array($result);
@@ -68,21 +70,21 @@ $rs = mysql_fetch_array($result);
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อหนังสือ</label>
                                                     <input type="text" class="form-control" value="<?php echo "$rs[b_name]";?>" name="b_name" id="b_name" placeholder="กรุณาใส่ชื่อหนังสือ"
-                                                           aria-describedby="basic-addon1">
+                                                           aria-describedby="basic-addon1" readonly>
                                                 </div>    
                                             </div>
                                             <div class="form-row">
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อผู้แต่ง</label>
-                                                    <input type="text" class="form-control" value="<?php echo "$rs[b_author]";?>" name="b_author" id="b_author" placeholder="กรุณาใส่ชื่อผู้แต่ง"
-                                                           aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" value="<?php echo "$rs[a_name]";?>" name="b_author" id="b_author" placeholder="กรุณาใส่ชื่อผู้แต่ง"
+                                                           aria-describedby="basic-addon1" readonly>
                                                 </div>
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault02">ปีที่พิมพ์</label>
                                                     <input type="text" class="form-control" value="<?php echo "$rs[b_year]";?>" name="b_year" id="b_year" placeholder="กรุณาใส่ปีที่พิมพ์"
-                                                           aria-describedby="basic-addon1">
+                                                           aria-describedby="basic-addon1" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -90,14 +92,14 @@ $rs = mysql_fetch_array($result);
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">สำนักพิมพ์</label>
                                                     <div style="width: -moz-fit-content" >
-                                                        <textarea class="form-control" id="b_place"name="b_place" placeholder="กรุณาใส่สำนักพิมพ์" rows="3"><?php echo "$rs[b_place]";?></textarea>
+                                                        <textarea class="form-control" id="b_place"name="b_place" placeholder="กรุณาใส่สำนักพิมพ์" rows="3"><?php echo "$rs[lo_name]";?></textarea>
                                                     </div>
                                                 </div>
                                                  <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault02">ราคา</label>
                                                     <input type="text" class="form-control" value="<?php echo "$rs[b_price]";?>" name="b_price" id="b_price" placeholder="กรุณาใส่ราคา"
-                                                           aria-describedby="basic-addon1">
+                                                           aria-describedby="basic-addon1" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -105,25 +107,13 @@ $rs = mysql_fetch_array($result);
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">จำนวนเล่ม</label>
                                                     <input type="text" class="form-control" value="<?php echo "$rs[b_num]";?>" name="b_num" id="b_num"
-                                                           placeholder="กรุณาใส่จำนวนเล่ม"  aria-describedby="basic-addon1">
+                                                           placeholder="กรุณาใส่จำนวนเล่ม"  aria-describedby="basic-addon1" readonly>
                                                 </div>
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อหมวดหมู่</label>
-                                                    <select class="custom-select" name="bc_id" id="bc_id" >
-                                                        <?php
-                                                        $sql2 = "SELECT * from bookcategory ";
-                                                        $result2 = mysql_query($sql2,$conn);
-                                                        while ($rs2=mysql_fetch_array($result2)){
-                                                            echo "<option value = \"$rs2[bc_id]\" ";
-                                                            if ("$rs[bc_id]"=="$rs2[bc_id]")
-                                                            {echo'selected';}
-                                                            echo ">$rs2[bc_name]";
-                                                            echo "</option>\n";
-
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                    <input type="text" class="form-control" name="bc_id" id="bc_id"  value="<?php echo "$rs[bc_name]";?>" placeholder="กรุณาใส่จำนวนเล่ม"  aria-describedby="basic-addon1" readonly>
+                                                       
                                                 </div>
                                                 <!-- <span style="padding-left:150px"></span> -->
                                                 <!-- <div class="col-md-4 mb-3" align="left">

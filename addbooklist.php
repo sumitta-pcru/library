@@ -12,10 +12,7 @@
 	include "connect.php";
     include "script.php";
 	include "alert.php";
-    // $datestart1 = date('1');
-    // $datestart2 = date('1');
-    // $datestart3 = date('1');
-    // $datestart4 = date('1');
+  
 
     $monthend1 = date('05');
     $monthend2 = date('09');
@@ -29,12 +26,12 @@
     $new_status1 = '1';
     $new_status = '0';
     // $b_date = $_POST['b_date'];
-    // $b_date = '2022-05-30';
+    $b_date = date("Y-m-d"); 
     // $date1 = date("Y"); 
     // echo $b_date;
     // echo $datestart1.$date1;
-    $a = new DateTime($_POST['b_date']);
-    $b_date =$a->format('Y-m-d');
+    // $a = new DateTime($_POST['b_date']);
+    // $b_date =$a->format('Y-m-d');
 
 
     $sql5 ="SELECT b_num FROM book where b_id = '$b_id'";
@@ -43,7 +40,7 @@
     
     $sum = 0;  
     $sum = $rs["b_num"] + 1;
-
+// echo $bl_id;
 	if ($bl_id!= NULL ) {
 
 		$sql = "SELECT * FROM booklist where bl_id = '$bl_id' ";
@@ -76,8 +73,7 @@
                 $sqlup4 = "UPDATE book SET b_num = '$sum' WHERE b_id ='$b_id'";
                 $result4 = mysql_query($sqlup4 , $conn) or die ("Error in query: $sqlup4 " . mysql_error());
 
-
-                $sql2 = "INSERT INTO booklist (bl_id,bl_status,b_date,b_id,new) VALUES('$bl_id','$bl_status','$b_date','$b_id','$new_status')"; 
+                $sql2 = "INSERT INTO booklist (bl_id,bl_status,b_date,b_id,new) VALUES('$bl_id','$bl_status','$b_date','$b_id','$new_status1')"; 
                 $result2 = mysql_query($sql2, $conn) or die ("Error in query: $sql2 " . mysql_error());
                 echo success_h3("บันทึกข้อมูลเรียบร้อยเเล้ว", "showbook.php");
             }

@@ -39,14 +39,17 @@ $dk_status = "2";
 //     $sql1 = "DELETE FROM bookingsdetails WHERE bl_id = '$bl_id'";
 //     mysql_query($sql1,$conn) or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 // }
-$sql = "UPDATE bookingsdetails SET  dk_status = '$dk_status' WHERE dk_id = '$dk_id'";
-mysql_query($sql,$conn)
-or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
-mysql_close();
 
+            $sql2 = "UPDATE bookingsdetails SET dk_status = 2 WHERE dk_id = '$dk_id'";
+			mysql_query($sql2,$conn)
+				or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+
+            $sql2 = "UPDATE booklist SET bl_status = 0 WHERE bl_id = '$bl_id'";
+            mysql_query($sql2,$conn)
+            or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();    
 echo success_h3("ยกเลิกข้อมูลเรียบร้อยเเล้ว","showbookings.php");
 
-
+mysql_close();
 
 ?>
 </body>

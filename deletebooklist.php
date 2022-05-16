@@ -13,11 +13,26 @@ include "script.php";
 include "alert.php";
 $bl_id = $_POST['bl_id'];
 
+$sql1 = "SELECT COUNT(bk.bl_id) FROM booklist bl inner join bookingsdetails bk on bl.bl_id = bk.bl_id WHERE bl.bl_id = '$bl_id'";
+$result2 = mysql_query($sql1,$conn);
+$record2=mysql_fetch_array($result2);
+$holding=$record2[0];
+$sql12 = "SELECT COUNT(bw.bl_id) FROM booklist bl inner join borrowingdetails bw on bl.bl_id = bw.bl_id WHERE bl.bl_id = '$bl_id'";
+$result22 = mysql_query($sql12,$conn);
+$record22=mysql_fetch_array($result22);
+$holding2=$record22[0];
+
+if($holding>0){
+    echo success_h3("ไม่สามรถลบข้อมูลได้","showbook.php");
+}elseif($holding2>0){
+    echo success_h3("ไม่สามรถลบข้อมูลได้","showbook.php");
+}else{
 $sql = "DELETE FROM booklist WHERE bl_id = '$bl_id'";
-mysql_query($sql,$conn)
-	or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
-mysql_close();
-echo success_h3("ลบข้อมูลเรียบร้อยเเล้ว","showbook.php");
+    mysql_query($sql,$conn)
+        or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+    mysql_close();
+    echo success_h3("ลบข้อมูลเรียบร้อยเเล้ว","showbook.php");
+}
 ?>
 </body>
 </html>

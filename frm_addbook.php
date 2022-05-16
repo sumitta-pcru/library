@@ -60,36 +60,37 @@ include 'check.php';
                                         <input type="text" class="form-control" name="b_id" id="b_id"
                                             placeholder="กรุณาใส่รหัสหนังสือ" aria-describedby="basic-addon1">
                                     </div>
-                                    <!-- <span style="padding-left:150px"></span>
+                                    <span style="padding-left:150px"></span>
 
-                                                    <div class="col-md-4 mb-3" align="left">
-                                                        <label for="validationDefault02">รหัส ISBN</label>
-                                                        <input type="text" class="form-control"  name="b_isbn" id="b_isbn" placeholder="กรุณาใส่รหัส ISBN"
-                                                               aria-describedby="basic-addon1">
-                                                    </div> -->
-
+                                    <div class="col-md-4 mb-3" align="left">
+                                        <label for="validationDefault02">รหัส ISBN</label>
+                                        <input type="text" class="form-control" name="b_isbn" id="b_isbn"
+                                            placeholder="กรุณาใส่รหัส ISBN" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="form-row">
                                     <span style="padding-left:150px"></span>
                                     <div class="col-md-4 mb-3" align="left">
                                         <label for="validationDefault01">ชื่อหนังสือ</label>
                                         <input type="text" class="form-control" name="b_name" id="b_name"
                                             placeholder="กรุณาใส่ชื่อหนังสือ" aria-describedby="basic-addon1">
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <span style="padding-left:150px"></span>
                                     <div class="col-md-4 mb-3" align="left">
                                         <label for="validationDefault01">ชื่อผู้แต่ง</label>
-                                        <select class="form-control select2" name="bl_id" id="bl_id">
-                                            <i class="fas fa-users"></i>
+                                        <select class="form-control select2" name="a_id" id="a_id">
                                             <?php
-                                                $sql1 = "SELECT * from authorname ";
-                                                $result1 = mysql_query($sql1, $conn);
-                                                while ($rs1=mysql_fetch_array($result1)){
-                                                    echo "<option value = $rs1[a_id]>$rs1[a_name]</option>";
-                                                }
-                                                ?>
+                                                        $sql1 = "SELECT * from authorname ";
+                                                        $result1 = mysql_query($sql1,$conn);
+                                                        while ($rs1=mysql_fetch_array($result1)){
+                                                            echo "<option value = $rs1[a_id]>$rs1[a_name]</option>";
+                                                        }
+                                                        ?>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="form-row">
+
                                     <span style="padding-left:150px"></span>
                                     <div class="col-md-4 mb-3" align="left">
                                         <label for="validationDefault02">ปีที่พิมพ์</label>
@@ -97,24 +98,41 @@ include 'check.php';
                                             placeholder="กรุณาใส่ปีที่พิมพ์" aria-describedby="basic-addon1"
                                             onkeypress="number(event)">
                                     </div>
+                                    <span style="padding-left:150px"></span>
+                                    <div class="col-md-4 mb-3" align="left">
+                                        <label for="validationDefault01">สำนักพิมพ์</label>
+                                        <select class="form-control select2" name="lo_id" id="lo_id">
+                                            <?php
+                                                        $sql1 = "SELECT * from printlocation ";
+                                                        $result1 = mysql_query($sql1,$conn);
+                                                        while ($rs1=mysql_fetch_array($result1)){
+                                                            echo "<option value = $rs1[lo_id]>$rs1[lo_name]</option>";
+                                                        }
+                                                        ?>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-row">
+
+
                                     <span style="padding-left:150px"></span>
                                     <div class="col-md-4 mb-3" align="left">
                                         <label for="validationDefault02">ราคา</label>
                                         <input type="text" class="form-control" name="b_price" id="b_price"
                                             placeholder="กรุณาใส่ราคา" aria-describedby="basic-addon1">
                                     </div>
-                                    <!-- <span style="padding-left:150px"></span>
-                                                    <div class="col-md-4 mb-3" align="left">
-                                                        <label for="validationDefault01">จำนวนเล่ม</label>
-                                                        <input type="text" class="form-control"  name="b_num" id="b_num"
-                                                               placeholder="กรุณาใส่จำนวนเล่ม"  aria-describedby="basic-addon1">
-                                                    </div> -->
+                                    <span style="padding-left:150px"></span>
+                                    <div class="col-md-4 mb-3" align="left">
+                                        <label for="validationDefault01">จำนวนเล่ม</label>
+                                        <input type="text" class="form-control" name="b_num" id="b_num"
+                                            placeholder="กรุณาใส่จำนวนเล่ม" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="form-row">
                                     <span style="padding-left:150px"></span>
                                     <div class="col-md-4 mb-3" align="left">
                                         <label for="validationDefault01">หมวดหมู่</label>
-                                        <select class="custom-select select2" name="bc_id" id="bc_id">
+                                        <select class="form-control select2" name="bc_id" id="bc_id">
                                             <?php
                                                         $sql1 = "SELECT * from bookcategory ";
                                                         $result1 = mysql_query($sql1,$conn);
@@ -126,26 +144,6 @@ include 'check.php';
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <span style="padding-left:150px"></span>
-                                    <div class="col-md-4 mb-3" align="left">
-                                        <label for="validationDefault01">สำนักพิมพ์</label>
-                                        <select class="custom-select select2" name="lo_id" id="lo_id">
-                                            <?php 
-                                                        $sql1 = "SELECT * from printlocation ";
-                                                        $result1 = mysql_query($sql1,$conn);
-                                                        while ($rs1=mysql_fetch_array($result1)){
-                                                            echo "<option value = $rs1[lo_id]>$rs1[lo_name]</option>";
-                                                        }
-                                                        ?>
-                                        </select>
-                                    </div>
-                                    <span style="padding-left:150px"></span>
-                                    <div class="col-md-4 mb-3" align="left">
-                                        <label for="validationDefault01">รูปภาพ</label>
-                                        <input type="file" class="custom-file" name="photo" id="photo">
-                                    </div>
-                                </div>
-                                <div class="form-row">
                                     <!-- <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault02">วันที่รับล่าสุด</label>
@@ -154,7 +152,11 @@ include 'check.php';
                                                            onfocus="(this.type='date')"
                                                            onfocusout="(this.type='date')" max=<?php echo date('Y-m-d'); ?>>
                                                 </div> -->
-
+                                    <span style="padding-left:150px"></span>
+                                    <div class="col-md-4 mb-3" align="left">
+                                        <label for="validationDefault01">รูปภาพ</label>
+                                        <input type="file" class="custom-file" name="photo" id="photo">
+                                    </div>
                                 </div>
 
                                 <br>
@@ -196,17 +198,11 @@ include 'check.php';
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
     <script src="jquery/jquery.min.js"></script>
     <script src="datatables/select2/js/select2.full.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
+    <script src="js/sb-admin-2.js"></script>
 
     <script>
         $(document).ready(function () {

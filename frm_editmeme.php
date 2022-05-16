@@ -15,6 +15,7 @@ $datenow = date_create(date('Y-m-d'));
 	while($row=mysql_fetch_array($result)){
 		$bk_id[$i] = $row['bk_id'];
 		$dk_id[$i] = $row['dk_id'];
+        $bl_id[$i] = $row['bl_id'];
 		$bk_status[$i] = $row['dk_status'];
 		$bk_date[$i] = date_create($row['bk_date']);
 		$datediff[$i] = date_diff($datenow,$bk_date[$i]);
@@ -29,11 +30,14 @@ $datenow = date_create(date('Y-m-d'));
 			$sql2 = "UPDATE bookingsdetails SET dk_status = 2 WHERE dk_id = '$dk_id[$i] '";
 			mysql_query($sql2,$conn)
 				or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+
+            $sql2 = "UPDATE booklist SET bl_status = 0 WHERE bl_id = '$bl_id[$i] '";
+            mysql_query($sql2,$conn)
+            or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();    
 		}
-
-
-		$i++;
 		
+        $i++;
+	
 	}
 $sql = "SELECT * FROM member WHERE m_id = '$valid_uname'";
 $result = mysql_query($sql, $conn)

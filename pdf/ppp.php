@@ -1,6 +1,6 @@
 <?php
 require_once ('connect.php');
-require('pdf/fpdf.php');
+require_once('pdf/fpdf.php');
 
 class PDF extends FPDF{
     function Header()

@@ -15,10 +15,10 @@ include "alert.php";
 $b_id = $_POST['b_id'];
 
 $b_name = $_POST['b_name'];
-$b_author = $_POST['b_author'];
+$a_id = $_POST['a_id'];
 $b_year = $_POST['b_year'];
-$b_place = $_POST['b_place'];
-$b_num ='0';
+$lo_id = $_POST['lo_id'];
+// $b_num ='0';
 $b_pic = $_POST['b_pic'];
 $b_price = $_POST['b_price'];
 // $b_date = $_POST['b_date'];
@@ -31,7 +31,7 @@ $fileupload_name =$_FILES['photo']['name'];
 //$total = mysql_query($sql,$conn);
 //if(mysql_num_rows($total) > 0){
 //	echo error_h3("อาจารย์ซ้ำ","showbook.php");
-//	return;
+//	return;,b_num = '$b_num',b_num = '$b_num'b_id = '$b_id',b_id = '$b_id',
 //}
 
 if($fileupload != ""){
@@ -39,10 +39,10 @@ if($fileupload != ""){
 		@unlink("./picture/$b_pic");
 	}
 	copy($fileupload,"./picture/".$fileupload_name);
-	$sql = "UPDATE book SET b_id = '$b_id',b_name = '$b_name',b_author = '$b_author',b_year = '$b_year',b_place = '$b_place',b_num = '$b_num',b_price = '$b_price',b_pic = '$fileupload_name',bc_id = '$bc_id' WHERE b_id = '$b_id'";
+	$sql = "UPDATE book SET b_name = '$b_name',a_id = '$a_id',b_year = '$b_year',lo_id = '$lo_id',b_price = '$b_price',b_pic = '$fileupload_name',bc_id = '$bc_id' WHERE b_id = '$b_id'";
 
 }else{
-    $sql = "UPDATE book SET b_id = '$b_id',b_name = '$b_name',b_author = '$b_author',b_year = '$b_year',b_place = '$b_place',b_num = '$b_num',b_price = '$b_price',bc_id = '$bc_id' WHERE b_id = '$b_id'";
+    $sql = "UPDATE book SET b_name = '$b_name',a_id = '$a_id',b_year = '$b_year',lo_id = '$lo_id',b_price = '$b_price',bc_id = '$bc_id' WHERE b_id = '$b_id'";
 }
 
 mysql_query($sql,$conn)

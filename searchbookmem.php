@@ -4,11 +4,10 @@ include 'check.php';
 
 $valid_uname = $_SESSION['valid_uname'];
 
+$bc_id = $_POST["bc_id"];
 $sql = "select *
             FROM book b inner join booklist bl on bl.b_id=b.b_id  
-            inner join bookcategory bc on  b.bc_id = bc.bc_id 
-          
-        ";
+            inner join bookcategory bc on  b.bc_id = bc.bc_id WHERE bc.bc_id= $bc_id ";
 $result = mysql_query($sql,$conn)
 
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();

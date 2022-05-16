@@ -56,17 +56,17 @@ $rs = mysql_fetch_array($result);
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item active" aria-current="page">
-                                จัดการลบข้อมูลการจองหนังสือ
+                                จัดการยกเลิกข้อมูลการจองหนังสือ
                             </li>
                         </ol>
                     </nav>
                 </div>
             </div>
-            <sup><h6 class="mb-0" style="margin-top: 20px">จัดการลบข้อมูลการจองหนังสือ</h6></sup>
+            <sup><h6 class="mb-0" style="margin-top: 20px">จัดการยกเลิกข้อมูลการจองหนังสือ</h6></sup>
             <hr>
             <div class="card">
                 <div class="card-header" align="center">
-                   <h4>ลบข้อมูลการจองหนังสือ</h4>
+                   <h4>ยกเลิกข้อมูลการจองหนังสือ</h4>
                 </div>
                 <div class="card-body">
                     <form action="deletebooking.php" method="post" enctype="multipart/form-data" style="margin-top: 10px; margin-bottom: 10px;">

@@ -26,9 +26,9 @@ $rs = mysql_fetch_array($result);
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link
-                href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-                rel="stylesheet">
+        <link href="datatables/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+        <link href="datatables/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
         <!-- Custom styles for this template-->
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -58,39 +58,77 @@ $rs = mysql_fetch_array($result);
                                                         <input type="text" class="form-control" value="<?php echo "$rs[b_id]";?>" name="b_id" id="b_id" placeholder="กรุณาใส่รหัสหนังสือ"
                                                                aria-describedby="basic-addon1" readonly>
                                                     </div>
-                                                <!-- <span style="padding-left:150px"></span>
+                                                <span style="padding-left:150px"></span>
                                                     <div class="col-md-4 mb-3" align="left">
                                                         <label for="validationDefault02">รหัส ISBN</label>
                                                         <input type="text" class="form-control" value="<?php echo "$rs[b_isbn]";?>" name="b_isbn" id="b_isbn" placeholder="กรุณาใส่รหัส ISBN"
                                                                aria-describedby="basic-addon1" readonly>
-                                                    </div> -->
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-row">
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อหนังสือ</label>
                                                     <input type="text" class="form-control" value="<?php echo "$rs[b_name]";?>" name="b_name" id="b_name" placeholder="กรุณาใส่ชื่อหนังสือ"
                                                            aria-describedby="basic-addon1">
-                                                </div>    
-                                            </div>
-                                            <div class="form-row">
-                                                <span style="padding-left:150px"></span>
+                                                </div>   
+                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อผู้แต่ง</label>
-                                                    <input type="text" class="form-control" value="<?php echo "$rs[b_author]";?>" name="b_author" id="b_author" placeholder="กรุณาใส่ชื่อผู้แต่ง"
-                                                           aria-describedby="basic-addon1">
+                                                    <select class="form-control select2" name="a_id" id="a_id" >
+                                                        <?php
+                                                        $sql2 = "SELECT * from authorname ";
+                                                        $result2 = mysql_query($sql2,$conn);
+                                                        while ($rs2=mysql_fetch_array($result2)){
+                                                            echo "<option value = \"$rs2[a_id]\" ";
+                                                            if ("$rs[a_id]"=="$rs2[a_id]")
+                                                            {echo'selected';}
+                                                            echo ">$rs2[a_name]";
+                                                            echo "</option>\n";
+
+                                                        }
+                                                        ?>
+                                                    </select>
                                                 </div>
+                                            </div>
+                                            <div class="form-row">
+                                                
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault02">ปีที่พิมพ์</label>
                                                     <input type="text" class="form-control" value="<?php echo "$rs[b_year]";?>" name="b_year" id="b_year" placeholder="กรุณาใส่ปีที่พิมพ์"
                                                            aria-describedby="basic-addon1">
                                                 </div>
+                                                <span style="padding-left:150px"></span>
+                                                <div class="col-md-4 mb-0 " align="left">
+                                                    <label for="validationDefault01">สำนักพิมพ์</label>
+                                                    <select class="form-control select2" name="lo_id" id="lo_id" >
+                                                        <?php
+                                                        $sql2 = "SELECT * from printlocation ";
+                                                        $result2 = mysql_query($sql2,$conn);
+                                                        while ($rs2=mysql_fetch_array($result2)){
+                                                            echo "<option value = \"$rs2[lo_id]\" ";
+                                                            if ("$rs[lo_id]"=="$rs2[lo_id]")
+                                                            {echo'selected';}
+                                                            echo ">$rs2[lo_name]";
+                                                            echo "</option>\n";
+
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="form-row">
-                                               
+                                            <span style="padding-left:150px"></span>
+                                                <div class="col-md-4 mb-3" align="left">
+                                                    <label for="validationDefault02">ราคา</label>
+                                                    <input type="text" class="form-control" value="<?php echo "$rs[b_price]";?>" name="b_price" id="b_price" placeholder="กรุณาใส่ราคา"
+                                                           aria-describedby="basic-addon1">
+                                                </div>
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อหมวดหมู่</label>
-                                                    <select class="custom-select" name="bc_id" id="bc_id" >
+                                                    <select class="form-control select2" name="bc_id" id="bc_id" >
                                                         <?php
                                                         $sql2 = "SELECT * from bookcategory ";
                                                         $result2 = mysql_query($sql2,$conn);
@@ -105,14 +143,6 @@ $rs = mysql_fetch_array($result);
                                                         ?>
                                                     </select>
                                                 </div>
-                                                 <span style="padding-left:150px"></span>
-                                                <div class="col-md-4 mb-3" align="left">
-                                                    <label for="validationDefault02">ราคา</label>
-                                                    <input type="text" class="form-control" value="<?php echo "$rs[b_price]";?>" name="b_price" id="b_price" placeholder="กรุณาใส่ราคา"
-                                                           aria-describedby="basic-addon1">
-                                                </div>
-
-
                                             </div>
                                             <div class="form-row">
                                                <!-- <span style="padding-left:150px"></span>
@@ -127,13 +157,7 @@ $rs = mysql_fetch_array($result);
                                                     <label for="validationDefault01">วันที่รับล่าสุด</label>
                                                     <input style="size: revert" type="date" class="form-control" id="b_date" name="b_date" placeholder=" select" value="<?php echo "$rs[b_date]";?>">
                                                 </div> -->
-                                                <span style="padding-left:150px"></span>
-                                                <div class="col-md-4 mb-0 " align="left">
-                                                    <label for="validationDefault01">สำนักพิมพ์</label>
-                                                    <div style="width: -moz-fit-content" >
-                                                        <textarea class="form-control" id="b_place"name="b_place" placeholder="กรุณาใส่สำนักพิมพ์" rows="3"><?php echo "$rs[b_place]";?></textarea>
-                                                    </div>
-                                                </div>
+                                               
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-2 mb-0" align="left">
                                                     <label for="validationDefault01">รูปภาพ</label>
@@ -208,44 +232,21 @@ $rs = mysql_fetch_array($result);
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="jquery/jquery.min.js"></script>
+    <script src="datatables/select2/js/select2.full.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/sb-admin-2.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        } );
-        function deleteLocation(b_id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You want to delete ",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "deletebook.php?b_id="+b_id;
-                }
-            })
-        };
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
     </script>
+
+    <script src="numlock.js"></script>
+
+    
     </body>
     </html>
 

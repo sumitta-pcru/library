@@ -5,14 +5,7 @@ include 'check.php';
 // include 'linenotify.php';
 
 $valid_uname = $_SESSION['valid_uname'];
-$sql = "select *
-            FROM  borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  
-            inner join booklist bl on bd.bl_id = bl.bl_id
-            inner join book b on b.b_id = bl.b_id
-            inner join bookcategory bc on bc.bc_id = b.bc_id    
-            inner join member m on m.m_id = bw.m_id where bd.bd_status='1' ORDER BY bw.bw_returndate ASC";
-$result = mysql_query($sql,$conn)
-or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+
 
 // $sql1 = "select *
 // FROM  borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  
@@ -134,20 +127,43 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                     <tbody>
 
                                     <?php
-                                     
+                                     $sql = "select *
+                                    FROM  borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  
+                                    inner join booklist bl on bd.bl_id = bl.bl_id
+                                    inner join book b on b.b_id = bl.b_id
+                                    inner join bookcategory bc on bc.bc_id = b.bc_id    
+                                    inner join member m on m.m_id = bw.m_id where bd.bd_status='1' ORDER BY bw.bw_returndate ASC";
+                                    $result = mysql_query($sql,$conn)
+                                    or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+
                                     while ($rs1 = mysql_fetch_object($result)) {
-                                        $sql1 = "select *
-                                     FROM  borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  
-                                     inner join booklist bl on bd.bl_id = bl.bl_id
-                                     inner join book b on b.b_id = bl.b_id
-                                     inner join bookcategory bc on bc.bc_id = b.bc_id    
-                                     inner join member m on m.m_id = bw.m_id where bd.bw_id='".$rs1->bw_id."' and bd.bd_status='1' ORDER BY bw.bw_id ASC ";
+
+                                    $sql1 = "select *
+                                    FROM  borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  
+                                    inner join booklist bl on bd.bl_id = bl.bl_id
+                                    inner join book b on b.b_id = bl.b_id
+                                    inner join bookcategory bc on bc.bc_id = b.bc_id    
+                                    inner join member m on m.m_id = bw.m_id where bd.bw_id='".$rs1->bw_id."' and bd.bd_status='1' ORDER BY bw.bw_returndate ASC";
                                     //  echo $sql1;
                                      $result1 = mysql_query($sql1,$conn)
                                      or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
-
+                                     
+                                    $sql2 = "select *
+                                    FROM  borrowingdetails bd inner join borrowing bw  on bd.bw_id = bw.bw_id  
+                                    inner join booklist bl on bd.bl_id = bl.bl_id
+                                    inner join book b on b.b_id = bl.b_id
+                                    inner join bookcategory bc on bc.bc_id = b.bc_id    
+                                    inner join member m on m.m_id = bw.m_id where bd.bw_id='".$rs1->bw_id."' and bd.bd_status='1' ORDER BY bw.bw_id ASC ";
+                                    //  echo $sql1;
+                                    $result2 = mysql_query($sql2,$conn)
+                                    or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+                                    $rs = mysql_fetch_array($result2);
+                                    
+                                    $now = date_create(date('Y-m-d'));
+                                    $datee=date_create($rs['bw_returndate']);
                                      $i=0;
-                                    $row = mysql_fetch_array($result1);
+                                     if($now>$datee){$row = mysql_fetch_array($result1);
+                                    
                                          // $bw_id[$i] = $row['bw_id'];
                                          // $bw_date[$i] = $row['bw_date'];
                                          $datenow = date_create(date('Y-m-d'));
@@ -158,14 +174,14 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                          $diff = $datediff->format('%a');
                                     ?>
                                     <tr>
-                                        <td align="center"><?php echo"$rs1->bw_id";?></td>
-                                        <td align="center"><?php echo"$rs1->b_name";?></td>
-                                        <!-- <td align="center"><?php echo"$rs1->bc_name";?></td> -->
-                                        <td align="center"><?php echo"$rs1->bw_date"
+                                        <td align="center"><?php echo"$row[bw_id]";?></td>
+                                        <td align="center"><?php echo"$row[b_name]";?></td>
+                                        <!-- <td align="center"><?php echo"$row[bc_name]";?></td> -->
+                                        <td align="center"><?php echo"$row[bw_date]"
                                         
                                         
                                         ;?></td>
-                                        <td align="center"><?php echo"$rs1->bw_returndate";?></td>
+                                        <td align="center"><?php echo"$row[bw_returndate]";?></td>
 
                                       <td align="center">  <?php if($datenow<=$date2){
                                                 echo $diff." วัน" ;
@@ -174,7 +190,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                                 }
                                             ?>
                                          </td>
-                                        <td align="center"><?php echo"$rs1->m_name";?></td>
+                                        <td align="center"><?php echo"$row[m_name]";?></td>
                                         <td align="center">
                                             <a class="btn btn-outline-success"  href="line.php?bd_id=<?php echo $rs1->bd_id;?>">
                                             <i class="fab fa-line"></i>
@@ -182,6 +198,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                     </tr>
 
                                         <?php
+                                     }
                                     }
                                     ?>
                                     </tbody>
