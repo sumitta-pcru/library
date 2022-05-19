@@ -134,7 +134,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                 <td align="center"><?php echo"$rs->m_name";?></td>
                                 <td align="center">
                                             <a class="btn btn-secondary"  href="memprintbill.php?br_id=<?php echo $rs->br_id;?>&&rb_id=<?php echo $rs->rb_id;?>">
-                                            <i class="fas fa-print"></i> พิมพ์ใบเสร็จ
+                                            <i class="fas fa-print"></i> ใบเสร็จ
                                             </a>
                                         </td>
                             </tr>

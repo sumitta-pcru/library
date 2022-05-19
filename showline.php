@@ -118,7 +118,7 @@ $valid_uname = $_SESSION['valid_uname'];
                                             <!-- <td width="70" align="center">หมวดหมู่</td> -->
                                             <td width="70" align="center">วันที่ยืม</td>
                                             <td width="100" align="center">กำหนดคืน</td>
-                                            <td width="100" align="center">เหลืออีก</td>
+                                            <td width="100" align="center">วันที่เกินกำหนด</td>
                                             <td width="60" align="center">ชื่อผู้ใช้</td>
                                             <td width="70">&nbsp;แจ้งเตือน</td>
                                         </tr>
@@ -186,7 +186,7 @@ $valid_uname = $_SESSION['valid_uname'];
                                       <td align="center">  <?php if($datenow<=$date2){
                                                 echo $diff." วัน" ;
                                                 }else{
-                                                    echo "เกิน ".$diff." วัน" ;
+                                                    echo $diff." วัน" ;
                                                 }
                                             ?>
                                          </td>

@@ -107,9 +107,16 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                         <i class="fas fa-pen"></i> แก้ไข
                                     </a> -->
                                     <?php 
-                                    if($rs->dk_status!=2){ ?>
+                                    if($rs->dk_status==0){ ?>
                                         <a class="btn btn-danger" href="frm_delbookings.php?dk_id=<?php echo $rs->dk_id;?>&amp;bl_id=<?php echo $rs->bl_id;?>"
                                         style="color: white">
+                                        <i class="fas fa-trash-alt"></i> ยกเลิก
+
+                                    </a>
+                                    <?php } ?>
+                                    <?php 
+                                    if($rs->dk_status==1){ ?>
+                                          <a class="btn btn-secondary "style="color: white">
                                         <i class="fas fa-trash-alt"></i> ยกเลิก
 
                                     </a>

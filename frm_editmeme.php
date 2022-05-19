@@ -8,10 +8,10 @@ $datenow = date_create(date('Y-m-d'));
 	FROM  bookings bk inner join member m on m.m_id = bk.m_id 
 	inner join bookingsdetails bt  on bk.bk_id = bt.bk_id 
 	inner join booklist bl on bt.bl_id = bl.bl_id
-	inner join book b on b.b_id = bl.b_id and bk.m_id = '$valid_uname' where bt.dk_status ='0'";
+	inner join book b on b.b_id = bl.b_id  where bt.dk_status ='0'";
 	$result = mysql_query($sql,$conn);
 	$i=0;
-
+// and bk.m_id = '$valid_uname'
 	while($row=mysql_fetch_array($result)){
 		$bk_id[$i] = $row['bk_id'];
 		$dk_id[$i] = $row['dk_id'];

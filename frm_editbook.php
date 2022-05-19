@@ -101,7 +101,7 @@ $rs = mysql_fetch_array($result);
                                                 </div>
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-0 " align="left">
-                                                    <label for="validationDefault01">สำนักพิมพ์</label>
+                                                    <label for="validationDefault01">สถานที่พิมพ์</label>
                                                     <select class="form-control select2" name="lo_id" id="lo_id" >
                                                         <?php
                                                         $sql2 = "SELECT * from printlocation ";

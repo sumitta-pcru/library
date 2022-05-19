@@ -4,6 +4,46 @@ include 'script.php';
 include 'check.php';
 
 $valid_uname = $_SESSION['valid_uname'];
+
+$datenow = date_create(date('Y-m-d'));
+	$sql7 = "select *
+	FROM  bookings bk inner join member m on m.m_id = bk.m_id 
+	inner join bookingsdetails bt  on bk.bk_id = bt.bk_id 
+	inner join booklist bl on bt.bl_id = bl.bl_id
+	inner join book b on b.b_id = bl.b_id  where bt.dk_status ='0'";
+	$result7 = mysql_query($sql7,$conn);
+	$i=0;
+// and bk.m_id = '$valid_uname'
+	while($row=mysql_fetch_array($result7)){
+		$bk_id[$i] = $row['bk_id'];
+		$dk_id[$i] = $row['dk_id'];
+        $bl_id[$i] = $row['bl_id'];
+		$bk_status[$i] = $row['dk_status'];
+		$bk_date[$i] = date_create($row['bk_date']);
+		$datediff[$i] = date_diff($datenow,$bk_date[$i]);
+		$diff[$i] = $datediff[$i]->format('%a');
+		// echo $row['bk_status'];
+		// echo  	$diff[$i] ;
+		if($diff[$i]>=2){
+			// $sql = "DELETE FROM bookings WHERE m_id = '$valid_uname'";
+			// mysql_query($sql,$conn)
+			// 	or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+			
+			$sql2 = "UPDATE bookingsdetails SET dk_status = 2 WHERE dk_id = '$dk_id[$i] '";
+			mysql_query($sql2,$conn)
+				or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
+
+            $sql2 = "UPDATE booklist SET bl_status = 0 WHERE bl_id = '$bl_id[$i] '";
+            mysql_query($sql2,$conn)
+            or die("3. ไม่สามารถประมวลผลคำสั่งได้").mysql_error();    
+		}
+		
+        $i++;
+	
+	}
+
+
+
 $sql = "select *
             FROM  bookings bk inner join member m on m.m_id = bk.m_id 
             inner join bookingsdetails bt  on bk.bk_id = bt.bk_id 

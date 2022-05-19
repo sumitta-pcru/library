@@ -43,7 +43,7 @@ include 'check.php';
                         <div class="container" align="center" >
                                         <form  action="addprintlocation.php" method="post" enctype="multipart/form-data"  style="margin-top: 10px;"  >
                                                 <!-- Form Name -->
-                                                <legend><center><h2><b>เพิ่มข้อมูลสถานที่พิมพ์</b></h2></center></legend><br>
+                                                <legend><center><h2><b>เพิ่มข้อมูลสำนักพิมพ์</b></h2></center></legend><br>
                                                 <!-- Text input-->
                                             <!-- <div class="form-row" style="margin-top: 20px">
                                                 <span style="padding-left:360px"></span>
@@ -56,7 +56,7 @@ include 'check.php';
                                             <div class="form-row" style="margin-top: 20px">
                                                 <span style="padding-left:360px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
-                                                    <label for="validationDefault02">ชื่อสถานที่พิมพ์</label>
+                                                    <label for="validationDefault02">ชื่อสำนักพิมพ์</label>
                                                     <input name="lo_name" id="lo_name" type="text" class="form-control"
                                                            placeholder="กรุณาใส่ชื่อหมวดหมู่" aria-label="Department name" aria-describedby="basic-addon1" onkeypress="not_number(event)">
                                                 </div>

@@ -19,16 +19,17 @@
 
     $monthend3 = date('11');
     $monthend4 = date('03');
-
+    $id_list = $_POST['id_list'];
     $bl_id = $_POST['bl_id'];
     $b_id = $_POST['b_id'];
     $bl_status = '0';
     $new_status1 = '1';
     $new_status = '0';
+    $b_num = $_POST['b_num'];
     // $b_date = $_POST['b_date'];
     $b_date = date("Y-m-d"); 
     // $date1 = date("Y"); 
-    // echo $b_date;
+    // echo $id_list;
     // echo $datestart1.$date1;
     // $a = new DateTime($_POST['b_date']);
     // $b_date =$a->format('Y-m-d');
@@ -39,54 +40,63 @@
     $rs = mysql_fetch_array($query);
     
     $sum = 0;  
-    $sum = $rs["b_num"] + 1;
-// echo $bl_id;
-	if ($bl_id!= NULL ) {
+    $sum = $rs["b_num"] + $b_num;
+
+// echo $sum;
+	// if ($bl_id!= NULL ) {
 
 		$sql = "SELECT * FROM booklist where bl_id = '$bl_id' ";
 		$result = mysql_query($sql,$conn);
 		$total = mysql_fetch_array($result);
         
-        if($total == 0){
+        // if($total == 0){
            
             $date = substr($b_date,8);
             $month = substr($b_date,5,-3);
             // echo $date;
             //  echo $month;
-          
-            if(($month>=$monthend1) && ($month<=$monthend2)){
-                // echo "datestart1";
-                $sqlup1 = "UPDATE booklist SET new = '$new_status' WHERE MONTH(b_date)  NOT BETWEEN $monthend1 AND  $monthend2";
-                $result1 = mysql_query($sqlup1 , $conn) or die ("Error in query: $sqlup1 " . mysql_error());
+            for($i=1; $i<= $b_num;$id_list++){
+				if($i<=9){
+					$isbn_id = $b_id.".0".$id_list;
+				}else if($i>=10){
+					$isbn_id = $b_id.".".$id_list;
+				}
+echo $isbn_id."<br>";
 
-                $sqlup3 = "UPDATE book SET b_num = '$sum' WHERE b_id ='$b_id'";
-                $result3 = mysql_query($sqlup3 , $conn) or die ("Error in query: $sqlup3 " . mysql_error());
+//             if(($month>=$monthend1) && ($month<=$monthend2)){
+//                 // echo "datestart1";
+//                 $sqlup1 = "UPDATE booklist SET new = '$new_status' WHERE MONTH(b_date)  NOT BETWEEN $monthend1 AND  $monthend2";
+//                 $result1 = mysql_query($sqlup1 , $conn) or die ("Error in query: $sqlup1 " . mysql_error());
 
-                $sql1 = "INSERT INTO booklist (bl_id,bl_status,b_date,b_id,new) VALUES('$bl_id','$bl_status','$b_date','$b_id','$new_status1')"; 
-                $result1 = mysql_query($sql1, $conn) or die ("Error in query: $sql1 " . mysql_error());
-                echo success_h3("บันทึกข้อมูลเรียบร้อยเเล้ว", "showbook.php");
-            }elseif(($month>=$monthend3) || ($month<=$monthend4)){
-                echo "datestart2";
-                $sqlup2 = "UPDATE booklist SET new = '$new_status' WHERE MONTH(b_date) BETWEEN $monthend1 AND  $monthend2";
-                $result2 = mysql_query($sqlup2 , $conn) or die ("Error in query: $sqlup2 " . mysql_error());
+//                 $sqlup3 = "UPDATE book SET b_num = '$sum' WHERE b_id ='$b_id'";
+//                 $result3 = mysql_query($sqlup3 , $conn) or die ("Error in query: $sqlup3 " . mysql_error());
+
+//                 $sql1 = "INSERT INTO booklist (bl_id,bl_status,b_date,b_id,new) VALUES('$isbn_id','$bl_status','$b_date','$b_id','$new_status1')"; 
+//                 $result1 = mysql_query($sql1, $conn) or die ("Error in query: $sql1 " . mysql_error());
+//                 echo success_h3("บันทึกข้อมูลเรียบร้อยเเล้ว", "showbook.php");
+//             }elseif(($month>=$monthend3) || ($month<=$monthend4)){
+//                 echo "datestart2";
+//                 $sqlup2 = "UPDATE booklist SET new = '$new_status' WHERE MONTH(b_date) BETWEEN $monthend1 AND  $monthend2";
+//                 $result2 = mysql_query($sqlup2 , $conn) or die ("Error in query: $sqlup2 " . mysql_error());
     
-                $sqlup4 = "UPDATE book SET b_num = '$sum' WHERE b_id ='$b_id'";
-                $result4 = mysql_query($sqlup4 , $conn) or die ("Error in query: $sqlup4 " . mysql_error());
+//                 $sqlup4 = "UPDATE book SET b_num = '$sum' WHERE b_id ='$b_id'";
+//                 $result4 = mysql_query($sqlup4 , $conn) or die ("Error in query: $sqlup4 " . mysql_error());
 
-                $sql2 = "INSERT INTO booklist (bl_id,bl_status,b_date,b_id,new) VALUES('$bl_id','$bl_status','$b_date','$b_id','$new_status1')"; 
-                $result2 = mysql_query($sql2, $conn) or die ("Error in query: $sql2 " . mysql_error());
-                echo success_h3("บันทึกข้อมูลเรียบร้อยเเล้ว", "showbook.php");
+//                 $sql2 = "INSERT INTO booklist (bl_id,bl_status,b_date,b_id,new) VALUES('$isbn_id','$bl_status','$b_date','$b_id','$new_status1')"; 
+//                 $result2 = mysql_query($sql2, $conn) or die ("Error in query: $sql2 " . mysql_error());
+//                 echo success_h3("บันทึกข้อมูลเรียบร้อยเเล้ว", "showbook.php");
             }
-        }else {
-            echo error_h3("ข้อมูลซ้ำ");
-            return;
-        }
+//         }
+//         }else {
+//             echo error_h3("ข้อมูลซ้ำ");
+//             return;
+//         }
         
-    }
-    else{
-        echo error_h3("กรุณาป้อนข้อมูลให้ครบ");
-		return;
-}
+//     }
+//     else{
+//         echo error_h3("กรุณาป้อนข้อมูลให้ครบ");
+// 		return;
+// }
 
 
     ?>

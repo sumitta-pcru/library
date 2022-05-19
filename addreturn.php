@@ -82,7 +82,7 @@ if(empty($_SESSION['return'])){
                 }elseif($br_date>=$result->bw_returndate && $_SESSION['sum']!=0 ){
                     $i = 1;
                     $func ='ice2';
-                    echo 'ice2';
+                    // echo 'ice2';
                     $sql2 ="select ut_rate from  member m inner join usertype ut on m.ut_id=ut.ut_id  where m.m_id ='$result->m_id' limit 1 ";
                     $query2= mysql_query($sql2,$conn);
                     $result2=mysql_fetch_object($query2);

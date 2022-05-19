@@ -100,7 +100,7 @@ include 'check.php';
                                     </div>
                                     <span style="padding-left:150px"></span>
                                     <div class="col-md-4 mb-3" align="left">
-                                        <label for="validationDefault01">สำนักพิมพ์</label>
+                                        <label for="validationDefault01">สถานที่พิมพ์</label>
                                         <select class="form-control select2" name="lo_id" id="lo_id">
                                             <?php
                                                         $sql1 = "SELECT * from printlocation ";
