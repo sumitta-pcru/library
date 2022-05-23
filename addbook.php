@@ -25,6 +25,8 @@
 
 	$bc_id = $_POST['bc_id'];
 
+
+
 	$monthend1 = date('05');
     $monthend2 = date('09');
 
@@ -50,7 +52,7 @@
     $fileupload = $_FILES['photo']['tmp_name'];
     $fileupload_name = uniqid().$_FILES['photo']['name'];
 
-	if ($b_id && $b_name  && $b_year  && $b_num && $b_price  ) {
+	if ($b_year  && $b_num && $b_price  ) {
 	
 		
 			$sql = "SELECT * FROM book WHERE b_id ='$b_id ' or b_name = '$b_name'   ";
@@ -104,7 +106,7 @@
 			}//for
 
 	}else{
-		echo error_h3("กรุณาป้อนข้อมูลให้ครบ");
+		echo error_h3("กรุณาป้อนข้อมูลให้ครบ","frm_addbook.php");
 		return;
 	}
 	mysql_close();

@@ -56,7 +56,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                          <!-- <a  class="btn btn-success" href="frm_addbook.php"  >
                        <i class="fas fa-barcode"></i> เพิ่มบาร์โค้ด
                     </a> -->
-                         <a  class="btn btn-success" href="frm_addbook.php"  >
+                         <a  class="btn btn-success" href="frm_adddetail.php"  >
                         <i class="fas fa-plus-circle"></i> เพิ่มข้อมูลหนังสือ
                     </a>
                 	</div>

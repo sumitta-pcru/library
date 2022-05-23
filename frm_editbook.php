@@ -3,10 +3,14 @@ include 'connect.php';
 include "script.php";
 include 'check.php';
 $b_id = $_GET['b_id'];
-$sql = "SELECT * FROM book  where  b_id = '$b_id'";
+$sql = "SELECT * FROM book  b inner join authorname a on b.a_id = a.a_id 
+                        inner join bookcategory bc on b.bc_id = bc.bc_id where  b.b_id = '$b_id'";
 $result = mysql_query($sql,$conn)
 or die ("ไม่สามารถประมวลผลคำสั่งได้").mysql_error();
 $rs = mysql_fetch_array($result);
+
+
+// $c = $rs1["bc_name"];
 ?>
 
 
@@ -69,26 +73,14 @@ $rs = mysql_fetch_array($result);
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อหนังสือ</label>
-                                                    <input type="text" class="form-control" value="<?php echo "$rs[b_name]";?>" name="b_name" id="b_name" placeholder="กรุณาใส่ชื่อหนังสือ"
-                                                           aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control"  value="<?php echo  "$rs[b_name]";?>" name="b_name" id="b_name"
+                                             aria-describedby="basic-addon1" readonly>
                                                 </div>   
                                                  <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อผู้แต่ง</label>
-                                                    <select class="form-control select2" name="a_id" id="a_id" >
-                                                        <?php
-                                                        $sql2 = "SELECT * from authorname ";
-                                                        $result2 = mysql_query($sql2,$conn);
-                                                        while ($rs2=mysql_fetch_array($result2)){
-                                                            echo "<option value = \"$rs2[a_id]\" ";
-                                                            if ("$rs[a_id]"=="$rs2[a_id]")
-                                                            {echo'selected';}
-                                                            echo ">$rs2[a_name]";
-                                                            echo "</option>\n";
-
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                    <input type="text" class="form-control"  value="<?php echo "$rs[a_name]";?>"
+                                             aria-describedby="basic-addon1" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -128,20 +120,8 @@ $rs = mysql_fetch_array($result);
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อหมวดหมู่</label>
-                                                    <select class="form-control select2" name="bc_id" id="bc_id" >
-                                                        <?php
-                                                        $sql2 = "SELECT * from bookcategory ";
-                                                        $result2 = mysql_query($sql2,$conn);
-                                                        while ($rs2=mysql_fetch_array($result2)){
-                                                            echo "<option value = \"$rs2[bc_id]\" ";
-                                                            if ("$rs[bc_id]"=="$rs2[bc_id]")
-                                                            {echo'selected';}
-                                                            echo ">$rs2[bc_name]";
-                                                            echo "</option>\n";
-
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                    <input type="text" class="form-control"  value="<?php echo "$rs[bc_name]";?>"
+                                             aria-describedby="basic-addon1" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-row">

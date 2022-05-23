@@ -17,8 +17,8 @@ if($id_list<=9){
 }else{
     $a = ".".$id_list;
 }
-$bl_id = $b_id.$a;
-// echo $id_list;
+// $bl_id = $b_id.$a;
+// echo $bl_id;
 ?>
 
 
@@ -93,7 +93,7 @@ $bl_id = $b_id.$a;
                                             value="<?php echo "$rs[b_name]";?>" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
-                                <div class="form-row">
+                                <!-- <div class="form-row">
                                     <span style="padding-left:370px"></span>
                                     <div class="col-md-4 mb-3" align="left">
                                         <label for="validationDefault01">รหัสรายการ</label>
@@ -101,7 +101,7 @@ $bl_id = $b_id.$a;
                                             placeholder="กรุณาใส่รหัสรายการ" value="<?php echo $bl_id;?>"
                                             aria-describedby="basic-addon1" readonly>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-row">
                                     <span style="padding-left:370px"></span>
                                     <div class="col-md-4 mb-3" align="left">

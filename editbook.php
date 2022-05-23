@@ -14,15 +14,15 @@ include "alert.php";
 
 $b_id = $_POST['b_id'];
 
-$b_name = $_POST['b_name'];
-$a_id = $_POST['a_id'];
+// $b_name = $_POST['b_name'];
+// $a_id = $_POST['a_id'];
 $b_year = $_POST['b_year'];
 $lo_id = $_POST['lo_id'];
 // $b_num ='0';
 $b_pic = $_POST['b_pic'];
 $b_price = $_POST['b_price'];
 // $b_date = $_POST['b_date'];
-$bc_id = $_POST['bc_id'];
+// $bc_id = $_POST['bc_id'];
 
 $fileupload = $_FILES['photo']['tmp_name'];
 $fileupload_name =$_FILES['photo']['name'];
@@ -39,10 +39,10 @@ if($fileupload != ""){
 		@unlink("./picture/$b_pic");
 	}
 	copy($fileupload,"./picture/".$fileupload_name);
-	$sql = "UPDATE book SET b_name = '$b_name',a_id = '$a_id',b_year = '$b_year',lo_id = '$lo_id',b_price = '$b_price',b_pic = '$fileupload_name',bc_id = '$bc_id' WHERE b_id = '$b_id'";
+	$sql = "UPDATE book SET b_year = '$b_year',lo_id = '$lo_id',b_price = '$b_price',b_pic = '$fileupload_name' WHERE b_id = '$b_id'";
 
 }else{
-    $sql = "UPDATE book SET b_name = '$b_name',a_id = '$a_id',b_year = '$b_year',lo_id = '$lo_id',b_price = '$b_price',bc_id = '$bc_id' WHERE b_id = '$b_id'";
+    $sql = "UPDATE book SET b_year = '$b_year',lo_id = '$lo_id',b_price = '$b_price' WHERE b_id = '$b_id'";
 }
 
 mysql_query($sql,$conn)
