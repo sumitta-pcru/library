@@ -97,7 +97,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                 <div class="container-fluid">
                      <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800" style="margin-top: 20px">ข้อมูลการยืมหนังสือ</h1>
+                        <h1 class="h3 mb-0 text-gray-800" style="margin-top: 20px">ข้อมูลการจองหนังสือ</h1>
                         <!-- <form id="form1" name="form1" class="form-inline" method="post" action="searchborrwing.php">
                                 <div class="form-group">
                                     <input name="search" type="text" id="search"  class="form-control" placeholder="กรุณาใส่ข้อมูล">&nbsp;&nbsp;

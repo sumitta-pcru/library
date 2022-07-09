@@ -77,7 +77,7 @@ mysql_close();
                 <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow ">
                         <div class="user-box dropdown ">
-                            <a class="d-flex align-items-center nav-link dropdown-toggle "  href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class=""  href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle" style="width: 30px"
                                      src="img/undraw_profile.svg">
                                     <div class="user-info ps-3">
@@ -85,16 +85,14 @@ mysql_close();
                                         <?php $sql2 = "SELECT m.m_name FROM member m where  m.m_id = '$valid_uname'";
                                     $result2 = mysql_query($sql2,$conn);
                                     $rs2 = mysql_fetch_array($result2);
-                                    echo "$rs2[m_name]";?>
-                                        </p>
+                                    echo "$rs2[m_name]";?></p>
                                         <p class="designattion mb-0">
                                             <?php
                                             $sql3 = "SELECT u.ut_name FROM member m,usertype u where  m.m_id = '$valid_uname' and m.ut_id=u.ut_id";
                                             $result3 = mysql_query($sql3,$conn);
                                             $rs3 = mysql_fetch_array($result3);
                                             echo "$rs3[ut_name]";
-                                            ?>
-                                        </p>
+                                            ?></p>
                                     </div>
                         </a>
                         <!-- Dropdown - User Information -->

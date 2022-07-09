@@ -108,7 +108,7 @@ or die ("ไม่สามารถประมวลผลคำสั่ง�
                                         <td align="center"><?php echo"$rs1->b_id";?></td>
                                         <td align="center"><?php echo"$rs1->b_isbn";?></td>
                                         <td align="center"><?php echo"$rs1->b_name";?></td>
-                                        <td align="center"><?php echo"$rs1->a_name";?></td>
+                                        <td align="center"><?php echo"$rs1->a_name"." , "."$rs1->othername";?></td>
                                         <td align="center"><?php echo"$rs1->b_year";?></td>
                                         <td align="center"><?php echo"$rs1->lo_name";?></td>
                                         <td align="center"><?php echo"$rs1->b_price";?></td>

@@ -22,7 +22,7 @@
     $b_num = $_POST['b_num'];
     $b_price = $_POST['b_price'];
     $b_date = date('Y-m-d');
-
+	$othername=$_POST['othername'];
 	$bc_id = $_POST['bc_id'];
 
 
@@ -64,11 +64,11 @@
 						mkdir("./picture");
 					}
 					copy($fileupload,"./picture/".$fileupload_name);
-					$sql = "INSERT INTO book (b_id,b_isbn,b_name,b_year,b_price,b_num,b_pic,b_date,bc_id,lo_id,a_id)
-					VALUES ('$b_id','$isbn','$b_name','$b_year','$b_price','$b_num','$fileupload_name','$b_date','$bc_id','$lo_id','$a_id')";
+					$sql = "INSERT INTO book (b_id,b_isbn,b_name,b_year,b_price,b_num,b_pic,b_date,othername,bc_id,lo_id,a_id)
+					VALUES ('$b_id','$isbn','$b_name','$b_year','$b_price','$b_num','$fileupload_name','$b_date','$othername','$bc_id','$lo_id','$a_id')";
 				}else{
-					$sql = "INSERT INTO book (b_id,b_isbn,b_name,b_year,b_price,b_num,b_date,bc_id,lo_id,a_id) 
-					VALUES ('$b_id','$isbn','$b_name','$b_year','$b_price','$b_num','$b_date','$bc_id','$lo_id','$a_id')";
+					$sql = "INSERT INTO book (b_id,b_isbn,b_name,b_year,b_price,b_num,b_date,othername,bc_id,lo_id,a_id) 
+					VALUES ('$b_id','$isbn','$b_name','$b_year','$b_price','$b_num','$b_date','$othername','$bc_id','$lo_id','$a_id')";
 					
 				}//nofile
 			}else{

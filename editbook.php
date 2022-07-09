@@ -21,6 +21,7 @@ $lo_id = $_POST['lo_id'];
 // $b_num ='0';
 $b_pic = $_POST['b_pic'];
 $b_price = $_POST['b_price'];
+$othername=$_POST['othername'];
 // $b_date = $_POST['b_date'];
 // $bc_id = $_POST['bc_id'];
 
@@ -39,10 +40,10 @@ if($fileupload != ""){
 		@unlink("./picture/$b_pic");
 	}
 	copy($fileupload,"./picture/".$fileupload_name);
-	$sql = "UPDATE book SET b_year = '$b_year',lo_id = '$lo_id',b_price = '$b_price',b_pic = '$fileupload_name' WHERE b_id = '$b_id'";
+	$sql = "UPDATE book SET b_year = '$b_year',lo_id = '$lo_id',b_price = '$b_price',othername = '$othername',b_pic = '$fileupload_name' WHERE b_id = '$b_id'";
 
 }else{
-    $sql = "UPDATE book SET b_year = '$b_year',lo_id = '$lo_id',b_price = '$b_price' WHERE b_id = '$b_id'";
+    $sql = "UPDATE book SET b_year = '$b_year',lo_id = '$lo_id',b_price = '$b_price',othername = '$othername' WHERE b_id = '$b_id'";
 }
 
 mysql_query($sql,$conn)

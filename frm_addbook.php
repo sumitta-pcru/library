@@ -130,6 +130,15 @@ include 'check.php';
                                     </div>
                                     <span style="padding-left:150px"></span>
                                     <div class="col-md-4 mb-3" align="left">
+                                        <label for="validationDefault02">ชื่อผู้แต่งร่วมคนอื่น</label>
+                                        <input type="text" class="form-control" name="othername" id="othername"
+                                            placeholder="ชื่อผู้แต่งร่วมคนอื่น" aria-describedby="basic-addon1"
+                                            onkeypress="number(event)">
+                                    </div>
+                                    </div>
+                                    <div class="form-row">
+                                    <span style="padding-left:150px"></span>
+                                    <div class="col-md-4 mb-3" align="left">
                                         <label for="validationDefault01">สถานที่พิมพ์</label>
                                         <select class="form-control select2" name="lo_id" id="lo_id">
                                             <?php
@@ -141,21 +150,26 @@ include 'check.php';
                                                         ?>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-row">
-
-
                                     <span style="padding-left:150px"></span>
                                     <div class="col-md-4 mb-3" align="left">
                                         <label for="validationDefault02">ราคา</label>
                                         <input type="text" class="form-control" name="b_price" id="b_price"
                                             placeholder="กรุณาใส่ราคา" aria-describedby="basic-addon1">
                                     </div>
+                                </div>
+                                <div class="form-row">
                                     <span style="padding-left:150px"></span>
                                     <div class="col-md-4 mb-3" align="left">
                                         <label for="validationDefault01">จำนวนเล่ม</label>
                                         <input type="text" class="form-control" name="b_num" id="b_num"
                                             placeholder="กรุณาใส่จำนวนเล่ม" aria-describedby="basic-addon1">
+                                    </div>
+                                    <span style="padding-left:150px"></span>
+                                    <div class="col-md-4 mb-3" align="left">
+                                        <label for="validationDefault01">ชื่อหมวดหมู่</label>
+                        
+                                        <input type="text" class="form-control"  value="<?php echo $c;?>"
+                                             aria-describedby="basic-addon1" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -164,13 +178,7 @@ include 'check.php';
                                     <input type="text" class="form-control"  value="<?php echo $rs1->bc_id;?>" 
                                              aria-describedby="basic-addon1" readonly>
                                     </div> -->
-                                    <span style="padding-left:150px"></span>
-                                    <div class="col-md-4 mb-3" align="left">
-                                        <label for="validationDefault01">ชื่อหมวดหมู่</label>
-                        
-                                        <input type="text" class="form-control"  value="<?php echo $c;?>"
-                                             aria-describedby="basic-addon1" readonly>
-                                    </div>
+                                    
                                 </div>
                                 <div class="form-row">
                                     <span style="padding-left:150px"></span>

@@ -92,6 +92,14 @@ $rs = mysql_fetch_array($result);
                                                            aria-describedby="basic-addon1">
                                                 </div>
                                                 <span style="padding-left:150px"></span>
+                                                <div class="col-md-4 mb-3" align="left">
+                                                    <label for="validationDefault02">ชื่อผู้แต่งร่วมคนอื่น</label>
+                                                    <input type="text" class="form-control" value="<?php echo "$rs[othername]";?>" name="othername" id="othername" placeholder="ชื่อผู้แต่งร่วมคนอื่น"
+                                                           aria-describedby="basic-addon1">
+                                                </div>
+                                                </div>
+                                                <div class="form-row">
+                                                <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-0 " align="left">
                                                     <label for="validationDefault01">สถานที่พิมพ์</label>
                                                     <select class="form-control select2" name="lo_id" id="lo_id" >
@@ -109,19 +117,34 @@ $rs = mysql_fetch_array($result);
                                                         ?>
                                                     </select>
                                                 </div>
-                                            </div>
-                                            <div class="form-row">
-                                            <span style="padding-left:150px"></span>
+                                                <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault02">ราคา</label>
                                                     <input type="text" class="form-control" value="<?php echo "$rs[b_price]";?>" name="b_price" id="b_price" placeholder="กรุณาใส่ราคา"
                                                            aria-describedby="basic-addon1">
                                                 </div>
+                                            </div>
+                                            <div class="form-row">
                                                 <span style="padding-left:150px"></span>
                                                 <div class="col-md-4 mb-3" align="left">
                                                     <label for="validationDefault01">ชื่อหมวดหมู่</label>
                                                     <input type="text" class="form-control"  value="<?php echo "$rs[bc_name]";?>"
                                              aria-describedby="basic-addon1" readonly>
+                                                </div>
+                                                <span style="padding-left:150px"></span>
+                                                <div class="col-md-2 mb-0" align="left">
+                                                    <label for="validationDefault01">รูปภาพ</label>
+                                                    <td align="center">
+                                                        <?php
+
+                                                        if("$rs[b_pic]" !=""){
+                                                            ?>
+
+                                                            <img src="<?php echo"./picture/$rs[b_pic]";?>" width="100%" height="55%">
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <input style="margin-top: 20px" type="file" class="custom-file" name="photo" id="photo" >
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -138,21 +161,7 @@ $rs = mysql_fetch_array($result);
                                                     <input style="size: revert" type="date" class="form-control" id="b_date" name="b_date" placeholder=" select" value="<?php echo "$rs[b_date]";?>">
                                                 </div> -->
                                                
-                                                <span style="padding-left:150px"></span>
-                                                <div class="col-md-2 mb-0" align="left">
-                                                    <label for="validationDefault01">รูปภาพ</label>
-                                                    <td align="center">
-                                                        <?php
-
-                                                        if("$rs[b_pic]" !=""){
-                                                            ?>
-
-                                                            <img src="<?php echo"./picture/$rs[b_pic]";?>" width="100%" height="55%">
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                        <input style="margin-top: 20px" type="file" class="custom-file" name="photo" id="photo" >
-                                                </div>
+                                                
                                                 
                                             </div>
 
